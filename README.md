@@ -18,15 +18,6 @@
 
 ## 🚀 快速开始
 
-### 本地使用
-
-直接用浏览器打开 `index.html` 即可（推荐用 VS Code Live Server 或 Python HTTP 服务）：
-
-```bash
-# Python 方式
-python -m http.server 8080
-# 然后访问 http://localhost:8080
-```
 
 ### 部署到 GitHub Pages
 
@@ -118,3 +109,4 @@ PaperEveryday/
 ---
 
 *Made with ❤️ for researchers who want to stay on top of their field.*
+
