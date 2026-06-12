@@ -1,121 +1,1264 @@
 ﻿[
-  {
-    "id": "nerf",
-    "domainId": "3d-recon",
-    "title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
-    "authors": "Ben Mildenhall, Pratul P. Srinivasan, Matthew Tancik, Jonathan T. Barron, Ravi Ramamoorthi, Ren Ng",
-    "year": 2020,
-    "venue": "ECCV 2020 (Best Paper Honorable Mention)",
-    "arxivId": "2003.08934",
-    "abstract": "We present a method that achieves state-of-the-art results for synthesizing novel views of complex scenes by optimizing an underlying continuous volumetric scene function using a sparse set of input views. The algorithm represents a scene using a fully-connected (non-convolutional) deep network, whose input is a single continuous 5D coordinate (spatial location (x,y,z) and viewing direction (θ,φ)) and whose output is the volume density and view-dependent emitted radiance at that spatial location.",
-    "innovation": [
-      "使用 MLP 隐式表示场景的连续 5D 神经辐射场",
-      "可微体积渲染实现端到端优化",
-      "位置编码（Positional Encoding）提升高频细节表达能力",
-      "视图依赖的辐射度输出支持逼真的视角效果"
-    ],
-    "results": "在新视角合成任务上显著优于此前方法（如 LSR、SRN），PSNR 比之前最佳方法高出约 4-5 dB。真实场景和合成场景均取得 SOTA 效果。",
-    "link": "https://arxiv.org/abs/2003.08934",
-    "tags": ["foundational", "代表作"],
-    "importance": 5
-  },
-  {
-    "id": "3dgs",
-    "domainId": "3d-recon",
-    "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
-    "authors": "Bernhard Kerbl, Georgios Kopanas, Thomas Leimkühler, George Drettakis",
-    "year": 2023,
-    "venue": "ACM Transactions on Graphics (SIGGRAPH 2023)",
-    "arxivId": "2308.04079",
-    "abstract": "We introduce 3D Gaussian Splatting, a new approach for real-time radiance field rendering. Our method represents scenes as a collection of anisotropic 3D Gaussians, optimized via differentiable rasterization. This representation enables fast training and real-time rendering at high quality, bridging the gap between implicit NeRF-like methods and explicit point-based approaches.",
-    "innovation": [
-      "用各向异性 3D 高斯椭球体显式表示场景，替代 NeRF 的隐式 MLP",
-      "可微分光栅化渲染器实现高效训练和实时渲染",
-      "自适应密度控制（分裂/克隆）自动调节高斯数量",
-      "首个同时实现快速训练（<30min）和实时渲染（>30fps）的辐射场方法"
-    ],
-    "results": "在 NeRF-Synthetic、Mip-NeRF 360、Tanks&Temples、Deep Blending 等多个基准上达到或超越 SOTA 质量，渲染速度达到 30+ fps（RTX 3090），训练时间约 25-45 分钟。",
-    "link": "https://arxiv.org/abs/2308.04079",
-    "tags": ["foundational", "代表作"],
-    "importance": 5
-  },
-  {
-    "id": "mipnerf",
-    "domainId": "3d-recon",
-    "title": "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields",
-    "authors": "Jonathan T. Barron, Ben Mildenhall, Matthew Tancik, Peter Hedman, Ricardo Martin-Brualla, Pratul P. Srinivasan",
-    "year": 2021,
-    "venue": "ICCV 2021",
-    "arxivId": "2103.13415",
-    "abstract": "NeRF has shown impressive results for novel view synthesis, but it suffers from aliasing artifacts when rendering at different resolutions or from varying camera distances. We propose mip-NeRF, which uses a multiscale representation with integrated positional encoding to handle scale ambiguity. Our method achieves better results than NeRF while being more efficient.",
-    "innovation": [
-      "集成位置编码（Integrated Positional Encoding）替代原始位置编码",
-      "通过圆锥沿光线采样替代点采样，自然处理多尺度问题",
-      "用 IPE 特征向量表示体积区域而非点，消除抗锯齿问题"
-    ],
-    "results": "在多尺度数据集上显著超越 NeRF，PSNR 提升约 8-10%，同时训练速度略快于 NeRF。",
-    "link": "https://arxiv.org/abs/2103.13415",
-    "tags": ["important", "改进工作"],
-    "importance": 4
-  },
-  {
-    "id": "openvla",
-    "domainId": "vla",
-    "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
-    "authors": "Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, Ted Xiao, Ashwin Balakrishna, Suraj Nair, Rafael Rafailov, Ethan Foster, Pannag R. Sanketi, Quan Vuong, Thomas Kollar, Benjamin Burchfiel, Russ Tedrake, Dorsa Sadigh, Sergey Levine, Percy Liang, Chelsea Finn",
-    "year": 2024,
-    "venue": "arXiv Preprint",
-    "arxivId": "2406.09246",
-    "abstract": "OpenVLA is a 7B-parameter open-source Vision-Language-Action model, fine-tuned from a pretrained Prismatic-VLM (which combines a SigLIP vision encoder and a Llama 2 language model). It takes robot camera images and language instructions as input and directly outputs robot action tokens. The model is trained on the Open X-Embodiment dataset, the largest open-source robot manipulation dataset.",
-    "innovation": [
-      "首个开源的大规模 VLA 基础模型（7B 参数）",
-      "VLM + 动作头（action head）架构，语言模型直接输出动作 token",
-      "在 Open X-Embodiment 大规模数据集上训练，跨 embodiment 泛化",
-      "支持 LoRA 微调，适应特定机器人平台"
-    ],
-    "results": "在多个机器人平台（Google Robot、BridgeData v2、TacoPlay）上达到或超越 RT-2-X 等闭源模型的性能。LoRA 微调后可在单个 GPU 上 5 小时内完成领域适配。",
-    "link": "https://arxiv.org/abs/2406.09246",
-    "tags": ["foundational", "代表作"],
-    "importance": 5
-  },
-  {
-    "id": "pi0",
-    "domainId": "vla",
-    "title": "π0: A Vision-Language-Action Flow Model for General Robot Control",
-    "authors": "Physical Intelligence (Kevin Black, Noah Brown, et al.)",
-    "year": 2024,
-    "venue": "arXiv Preprint",
-    "arxivId": "2410.24164",
-    "abstract": "We introduce π0 (pi-zero), a vision-language-action flow model for general robot control. π0 is a large model pre-trained on diverse robot demonstration data spanning multiple embodiments and tasks. The model uses a flow-matching action head to predict continuous action sequences, enabling smooth and precise robot control from visual and language inputs.",
-    "innovation": [
-      "流匹配（Flow Matching）动作预测头，生成连续平滑动作序列",
-      "大规模多 embodiment 预训练，支持多种机器人平台",
-      "联合视觉-语言-动作的流式架构",
-      "支持语言条件化和目标条件化任务指定"
-    ],
-    "results": "在多个日常操作任务（叠衣服、组装零件、清理桌面等）上展现出强大的泛化能力，在 Physical Intelligence 的机器人平台上达到高成功率。",
-    "link": "https://arxiv.org/abs/2410.24164",
-    "tags": ["foundational", "代表作"],
-    "importance": 5
-  },
-  {
-    "id": "smolvla",
-    "domainId": "vla",
-    "title": "SmolVLA: Smaller Vision-Language-Action Models via Knowledge Distillation",
-    "authors": "Moo Jin Kim, et al.",
-    "year": 2024,
-    "venue": "arXiv Preprint",
-    "arxivId": "2409.12467",
-    "abstract": "SmolVLA explores scaling down VLA models through knowledge distillation from larger models like OpenVLA. It demonstrates that compact VLA models can retain much of the capability of their larger counterparts while being significantly more practical for real-time robot control.",
-    "innovation": [
-      "知识蒸馏将 7B VLA 压缩至 0.5B-2B 参数",
-      "在保持高性能的同时大幅降低推理成本",
-      "适用于边缘设备和实时控制场景",
-      "系统分析 VLA 模型规模与性能的权衡关系"
-    ],
-    "results": "压缩后的模型在多个任务上达到 OpenVLA 性能的 90-95%，推理速度提升 3-5 倍，参数量减少 70-90%。",
-    "link": "https://arxiv.org/abs/2409.12467",
-    "tags": ["重要工作", "模型压缩"],
-    "importance": 4
-  }
+    {
+        "year":  2025,
+        "link":  "https://z1fow0wh5tr.feishu.cn/wiki/TsHKwS00bi0POBkIYXNce4IinWg",
+        "id":  "paper_13",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Stereo Anywhere: Robust Zero-Shot Deep Stereo Matching Even Where Either Stereo or Mono Fail",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Morimitsu_DPFlow_Adaptive_Optical_Flow_Estimation_with_a_Dual-Pyramid_Framework_CVPR_2025_paper.pdf",
+        "id":  "paper_47",
+        "tags":  [
+
+                 ],
+        "domainId":  "flow-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "DPFlow: Adaptive Optical Flow Estimation with a Dual-Pyramid Framework",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Qiao_Towards_Open-World_Generation_of_Stereo_Images_and_Unsupervised_Matching_ICCV_2025_paper.pdf",
+        "id":  "paper_8",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Towards Open-World Generation of Stereo Images and Unsupervised Matching",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Quan_Zero-Shot_Blind-spot_Image_Denoising_via_Implicit_Neural_Sampling_CVPR_2025_paper.pdf",
+        "id":  "paper_29",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Zero-Shot Blind-spot Image Denoising via Implicit Neural Sampling",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Hoffmann_Floxels_Fast_Unsupervised_Voxel_Based_Scene_Flow_Estimation_CVPR_2025_paper.pdf",
+        "id":  "paper_49",
+        "tags":  [
+
+                 ],
+        "domainId":  "flow-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Floxels: Fast Unsupervised Voxel Based Scene Flow Estimation",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Lan_Removing_Out-of-Focus_Reflective_Flares_via_Color_Alignment_ICCV_2025_paper.pdf",
+        "id":  "paper_62",
+        "tags":  [
+
+                 ],
+        "domainId":  "flare-removal",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Removing Out-of-Focus Reflective Flares via Color Alignment",
+        "venue":  "",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Danier_DepthCues_Evaluating_Monocular_Depth_Perception_in_Large_Vision_Models_CVPR_2025_paper.pdf",
+        "id":  "paper_22",
+        "tags":  [
+
+                 ],
+        "domainId":  "mono-depth",
+        "importance":  0,
+        "authors":  "",
+        "title":  "DepthCues: Evaluating Monocular Depth Perception in Large Vision Models",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Guan_BridgeDepth_Bridging_Monocular_and_Stereo_Reasoning_with_Latent_Alignment_ICCV_2025_paper.pdf",
+        "id":  "paper_3",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "BridgeDepth: Bridging Monocular and Stereo Reasoning with Latent Alignment",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_ZeroStereo_Zero-shot_Stereo_Matching_from_Single_Images_ICCV_2025_paper.pdf",
+        "id":  "paper_5",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "ZeroStereo: Zero-shot Stereo Matching from Single Images",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Yao_Diving_into_the_Fusion_of_Monocular_Priors_for_Generalized_Stereo_ICCV_2025_paper.pdf",
+        "id":  "paper_6",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Diving into the Fusion of Monocular Priors for Generalized Stereo Matching",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Chen_Generalized_and_Efficient_2D_Gaussian_Splatting_for_Arbitrary-scale_Super-Resolution_ICCV_2025_paper.pdf",
+        "id":  "paper_0",
+        "tags":  [
+
+                 ],
+        "domainId":  "super-resolution",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Generalized and Efficient 2D Gaussian Splatting for Arbitrary-scale Super-Resolution",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Li_Global_Regulation_and_Excitation_via_Attention_Tuning_for_Stereo_Matching_ICCV_2025_paper.pdf",
+        "id":  "paper_4",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Global Regulation and Excitation via Attention Tuning for Stereo Matching",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_Learning_Robust_Stereo_Matching_in_the_Wild_with_Selective_Mixture-of-Experts_ICCV_2025_paper.pdf",
+        "id":  "paper_7",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Learning Robust Stereo Matching in the Wild with Selective Mixture-of-Experts",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://z1fow0wh5tr.feishu.cn/wiki/PjzpwTKK7i4tiIk9hwbcJJEqnLd",
+        "id":  "paper_15",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "FoundationStereo: Zero-Shot Stereo Matching",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://arxiv.org/pdf/2503.06617",
+        "id":  "paper_1",
+        "tags":  [
+
+                 ],
+        "domainId":  "super-resolution",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Pixel to Gaussian: Ultra-Fast Continuous Super-Resolution with 2D Gaussian Modeling",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Min_S2M2_Scalable_Stereo_Matching_Model_for_Reliable_Depth_Estimation_ICCV_2025_paper.pdf",
+        "id":  "paper_9",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "S²M²: Scalable Stereo Matching Model for Reliable Depth Estimation",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Dai_Multi-Modal_Synergistic_Implicit_Image_Enhancement_for_Efficient_Optical_Flow_Estimation_CVPR_2025_paper.pdf",
+        "id":  "paper_51",
+        "tags":  [
+
+                 ],
+        "domainId":  "flow-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Multi-Modal Synergistic Implicit Image Enhancement for Efficient Optical Flow Estimation",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Jing_Stereo_Any_Video_Temporally_Consistent_Stereo_Matching_ICCV_2025_paper.pdf",
+        "id":  "paper_10",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Stereo Any Video: Temporally Consistent Stereo Matching",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Han_Towards_Lossless_Implicit_Neural_Representation_via_Bit_Plane_Decomposition_CVPR_2025_paper.pdf",
+        "id":  "paper_30",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Towards Lossless Implicit Neural Representation via Bit Plane Decomposition",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Zhou_Bridge_Frame_and_Event_Common_Spatiotemporal_Fusion_for_High-Dynamic_Scene_CVPR_2025_paper.pdf",
+        "id":  "paper_52",
+        "tags":  [
+
+                 ],
+        "domainId":  "flow-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Bridge Frame and Event: Common Spatiotemporal Fusion for High-Dynamic Scene Optical Flow",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Li_CH3Depth_Efficient_and_Flexible_Depth_Foundation_Model_with_Flow_Matching_CVPR_2025_paper.pdf",
+        "id":  "paper_53",
+        "tags":  [
+
+                 ],
+        "domainId":  "flow-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "CH3Depth: Efficient and Flexible Depth Foundation Model with Flow Matching",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Xu_BANet_Bilateral_Aggregation_Network_for_Mobile_Stereo_Matching_ICCV_2025_paper.pdf",
+        "id":  "paper_11",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "BANet: Bilateral Aggregation Network for Mobile Stereo Matching",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_RobuSTereo_Robust_Zero-Shot_Stereo_Matching_under_Adverse_Weather_ICCV_2025_paper.pdf",
+        "id":  "paper_12",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "RobuSTereo: Robust Zero-Shot Stereo Matching under Adverse Weather",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Liu_EDCFlow_Exploring_Temporally_Dense_Difference_Maps_for_Event-based_Optical_Flow_CVPR_2025_paper.pdf",
+        "id":  "paper_50",
+        "tags":  [
+
+                 ],
+        "domainId":  "flow-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "EDCFlow: Exploring Temporally Dense Difference Maps for Event-based Optical Flow Estimation",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Jayasundara_MIRE_Matched_Implicit_Neural_Representations_CVPR_2025_paper.pdf",
+        "id":  "paper_31",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "MIRE: Matched Implicit Neural Representations",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://arxiv.org/pdf/2504.19270",
+        "id":  "paper_32",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "VI\\(3\\)NR: Variance Informed Initialization for Implicit Neural Representations",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Long_Shape_and_Texture_What_Influences_Reliable_Optical_Flow_Estimation_CVPR_2025_paper.pdf",
+        "id":  "paper_48",
+        "tags":  [
+
+                 ],
+        "domainId":  "flow-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Shape and Texture: What Influences Reliable Optical Flow Estimation?",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Jiang_HIIF_Hierarchical_Encoding_based_Implicit_Image_Function_for_Continuous_Super-resolution_CVPR_2025_paper.pdf",
+        "id":  "paper_38",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "HIIF: Hierarchical Encoding based Implicit Image Function for Continuous Super-resolution",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://ieeexplore.ieee.org/document/10973615",
+        "id":  "paper_60",
+        "tags":  [
+
+                 ],
+        "domainId":  "light-field",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Light Field Diffusion for Single-View Novel View Synthesis",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://arxiv.org/pdf/2507.12135",
+        "id":  "paper_58",
+        "tags":  [
+
+                 ],
+        "domainId":  "image-enhancement",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Learning Pixel-adaptive Multi-layer Perceptrons for Real-time Image Enhancement",
+        "venue":  "",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://z1fow0wh5tr.feishu.cn/wiki/IHj3wOYoLiVamPkCjwzcG6Zwnoc",
+        "id":  "paper_14",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "MonSter: Marry Monodepth to Stereo Unleashes Power",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://arxiv.org/pdf/2502.10714",
+        "id":  "paper_64",
+        "tags":  [
+
+                 ],
+        "domainId":  "flare-removal",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Disentangle Nighttime Lens Flares: Self-supervised Generation-based Lens Flare Removal",
+        "venue":  "",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Luo_STINR_Deciphering_Spatial_Transcriptomics_via_Implicit_Neural_Representation_CVPR_2025_paper.pdf",
+        "id":  "paper_33",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "STINR: Deciphering Spatial Transcriptomics via Implicit Neural Representation",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Gielisse_End-to-End_Implicit_Neural_Representations_for_Classification_CVPR_2025_paper.pdf",
+        "id":  "paper_36",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "End-to-End Implicit Neural Representations for Classification",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Kayabasi_Bias_for_Action_Video_Implicit_Neural_Representations_with_Bias_Modulation_CVPR_2025_paper.pdf",
+        "id":  "paper_35",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Bias for Action: Video Implicit Neural Representations with Bias Modulation",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MetricGrids_Arbitrary_Nonlinear_Approximation_with_Elementary_Metric_Grids_based_Implicit_CVPR_2025_paper.pdf",
+        "id":  "paper_34",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "MetricGrids: Arbitrary Nonlinear Approximation with Elementary Metric Grids based Implicit Neural Representation",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://arxiv.org/pdf/2510.15868",
+        "id":  "paper_63",
+        "tags":  [
+
+                 ],
+        "domainId":  "flare-removal",
+        "importance":  0,
+        "authors":  "",
+        "title":  "LightsOut: Diffusion-based Outpainting for Enhanced Lens Flare Removal",
+        "venue":  "",
+        "abstract":  ""
+    },
+    {
+        "year":  2025,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2025/papers/Jayasundara_SINR_Sparsity_Driven_Compressed_Implicit_Neural_Representations_CVPR_2025_paper.pdf",
+        "id":  "paper_37",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "SINR: Sparsity Driven Compressed Implicit Neural Representations",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2024/papers/Fang_CycleINR_Cycle_Implicit_Neural_Representation_for_Arbitrary-Scale_Volumetric_Super-Resolution_of_CVPR_2024_paper.pdf",
+        "id":  "paper_39",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "CycleINR: Cycle Implicit Neural Representation for Arbitrary-Scale Volumetric Super-Resolution of Medical Data",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://arxiv.org/pdf/2407.18046",
+        "id":  "paper_2",
+        "tags":  [
+
+                 ],
+        "domainId":  "super-resolution",
+        "importance":  0,
+        "authors":  "",
+        "title":  "GaussianSR: High Fidelity 2D Gaussian Splatting for Arbitrary-Scale Image Super-Resolution",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://eccv.ecva.net/virtual/2024/poster/1797",
+        "id":  "paper_18",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Bidirectional Stereo Image Compression with Cross-Dimensional Entropy Model",
+        "venue":  "ECCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://eccv.ecva.net/virtual/2024/poster/911",
+        "id":  "paper_17",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Learning Representations from Foundation Models for Domain Generalized Stereo Matching",
+        "venue":  "ECCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2024/papers/Ma_Continuous_Pose_for_Monocular_Cameras_in_Neural_Implicit_Representation_CVPR_2024_paper.pdf",
+        "id":  "paper_42",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Continuous Pose for Monocular Cameras in Neural Implicit Representation",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://eccv.ecva.net/virtual/2024/poster/2443",
+        "id":  "paper_19",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "StereoGlue: Joint Feature Matching and Robust Estimation",
+        "venue":  "ECCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2024/papers/Xu_Enhancing_Video_Super-Resolution_via_Implicit_Resampling-based_Alignment_CVPR_2024_paper.pdf",
+        "id":  "paper_41",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Enhancing Video Super-Resolution via Implicit Resampling-based Alignment",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://eccv.ecva.net/virtual/2024/poster/256",
+        "id":  "paper_16",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Temporally Consistent Stereo Matching",
+        "venue":  "ECCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://eccv.ecva.net/virtual/2024/poster/2453",
+        "id":  "paper_20",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Category-level Object Detection, Pose Estimation and Reconstruction from Stereo Images",
+        "venue":  "ECCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://arxiv.org/pdf/2402.00575",
+        "id":  "paper_61",
+        "tags":  [
+
+                 ],
+        "domainId":  "light-field",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Diffusion-based Light Field Synthesis",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2024/papers/Kim_Arbitrary-Scale_Image_Generation_and_Upsampling_using_Latent_Diffusion_Model_and_CVPR_2024_paper.pdf",
+        "id":  "paper_40",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Arbitrary-Scale Image Generation and Upsampling using Latent Diffusion Model and Implicit Neural Decoder",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2024,
+        "link":  "https://proceedings.mlr.press/v235/liu24af.html",
+        "id":  "paper_21",
+        "tags":  [
+
+                 ],
+        "domainId":  "stereo-matching",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Stereo Risk: A Continuous Modeling Approach to Stereo Matching",
+        "venue":  "ICML",
+        "abstract":  ""
+    },
+    {
+        "year":  2023,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2023/papers/Zhou_Improving_Lens_Flare_Removal_with_General-Purpose_Pipeline_and_Multiple_Light_ICCV_2023_paper.pdf",
+        "id":  "paper_65",
+        "tags":  [
+
+                 ],
+        "domainId":  "flare-removal",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Improving Lens Flare Removal with General-Purpose Pipeline and Multiple Light Sources Recovery",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2023,
+        "link":  "https://z1fow0wh5tr.feishu.cn/wiki/XvoUweA6PiZn7ikdkZKc7gZYnrh",
+        "id":  "paper_57",
+        "tags":  [
+
+                 ],
+        "domainId":  "dual-lens-sr",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Zero-Shot Dual-Lens Super-Resolution",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2023,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2023/papers/Wang_Omni_Aggregation_Networks_for_Lightweight_Image_Super-Resolution_CVPR_2023_paper.pdf",
+        "id":  "paper_54",
+        "tags":  [
+
+                 ],
+        "domainId":  "lightweight-sr",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Omni Aggregation Networks for Lightweight Image Super-Resolution",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2023,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2023/papers/Kim_Generalizable_Implicit_Neural_Representations_via_Instance_Pattern_Composers_CVPR_2023_paper.pdf",
+        "id":  "paper_45",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Generalizable Implicit Neural Representations via Instance Pattern Composers",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2023,
+        "link":  "https://arxiv.org/abs/2302.06556",
+        "id":  "paper_23",
+        "tags":  [
+
+                 ],
+        "domainId":  "mono-depth",
+        "importance":  0,
+        "authors":  "",
+        "title":  "VA-DepthNet: A Variational Approach to Single Image Depth Prediction",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2023,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2023/papers/Cao_CiaoSR_Continuous_Implicit_Attention-in-Attention_Network_for_Arbitrary-Scale_Image_Super-Resolution_CVPR_2023_paper.pdf",
+        "id":  "paper_43",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "CiaoSR: Continuous Implicit Attention-in-Attention Network for Arbitrary-Scale Image Super-Resolution",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2023,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2023W/NTIRE/papers/Guo_AsConvSR_Fast_and_Lightweight_Super-Resolution_Network_With_Assembled_Convolutions_CVPRW_2023_paper.pdf",
+        "id":  "paper_56",
+        "tags":  [
+
+                 ],
+        "domainId":  "lightweight-sr",
+        "importance":  0,
+        "authors":  "",
+        "title":  "AsConvSR: Fast and Lightweight Super-Resolution Network with Assembled Convolutions",
+        "venue":  "CVPRW",
+        "abstract":  ""
+    },
+    {
+        "year":  2023,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2023/papers/Lu_Learning_Spatial-Temporal_Implicit_Neural_Representations_for_Event-Guided_Video_Super-Resolution_CVPR_2023_paper.pdf",
+        "id":  "paper_44",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Learning Spatial-Temporal Implicit Neural Representations for Event-Guided Video Super-Resolution",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2023,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2023/papers/Zhang_Lightweight_Image_Super-Resolution_with_Superpixel_Token_Interaction_ICCV_2023_paper.pdf",
+        "id":  "paper_55",
+        "tags":  [
+
+                 ],
+        "domainId":  "lightweight-sr",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Lightweight Image Super-Resolution with Superpixel Token Interaction",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2021,
+        "link":  "https://arxiv.org/pdf/2011.12485",
+        "id":  "paper_67",
+        "tags":  [
+
+                 ],
+        "domainId":  "flare-removal",
+        "importance":  0,
+        "authors":  "",
+        "title":  "How to Train Neural Networks for Flare Removal",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2021,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2021/papers/Qiao_Light_Source_Guided_Single-Image_Flare_Removal_From_Unpaired_Data_ICCV_2021_paper.pdf",
+        "id":  "paper_66",
+        "tags":  [
+
+                 ],
+        "domainId":  "flare-removal",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Light Source Guided Single-Image Flare Removal from Unpaired Data",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2021,
+        "link":  "https://openaccess.thecvf.com/content/CVPR2021/papers/Chen_Learning_Continuous_Image_Representation_With_Local_Implicit_Image_Function_CVPR_2021_paper.pdf",
+        "id":  "paper_46",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Learning Continuous Image Representation with Local Implicit Image Function",
+        "venue":  "CVPR",
+        "abstract":  ""
+    },
+    {
+        "year":  2017,
+        "link":  "https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhou_Unsupervised_Learning_of_ICCV_2017_paper.pdf",
+        "id":  "paper_25",
+        "tags":  [
+
+                 ],
+        "domainId":  "unsupervised-stereo",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Unsupervised Learning of Stereo Matching",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  0,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Cong_Rethinking_the_Upsampling_Process_in_Light_Field_Super-Resolution_with_Spatial-Epipolar_ICCV_2025_paper.pdf",
+        "id":  "paper_28",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "Rethinking the Upsampling Process in Light Field Super-Resolution with Spatial-Epipolar Implicit Image Function",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  0,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Rezaeian_SL2A-INR_Single-Layer_Learnable_Activation_for_Implicit_Neural_Representation_ICCV_2025_paper.pdf",
+        "id":  "paper_26",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "SL2A-INR: Single-Layer Learnable Activation for Implicit Neural",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  0,
+        "link":  "https://openaccess.thecvf.com/content/ICCV2025/papers/Kazerouni_LIFT_Latent_Implicit_Functions_for_Task-_and_Data-Agnostic_Encoding_ICCV_2025_paper.pdf",
+        "id":  "paper_27",
+        "tags":  [
+
+                 ],
+        "domainId":  "implicit-neural-rep",
+        "importance":  0,
+        "authors":  "",
+        "title":  "LIFT: Latent Implicit Functions for Task- and Data-Agnostic Encoding",
+        "venue":  "ICCV",
+        "abstract":  ""
+    },
+    {
+        "year":  2021,
+        "link":  "https://arxiv.org/abs/2103.13415",
+        "id":  "mipnerf",
+        "innovation":  [
+                           "?????? IPE",
+                           "????????????"
+                       ],
+        "tags":  [
+                     "important",
+                     "????"
+                 ],
+        "domainId":  "nerf-3d",
+        "results":  "PSNR ??? 8-10%???????? NeRF",
+        "importance":  4,
+        "authors":  "Jonathan T. Barron, Ben Mildenhall, Matthew Tancik, Peter Hedman, Ricardo Martin-Brualla, Pratul P. Srinivasan",
+        "title":  "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields",
+        "venue":  "ICCV 2021",
+        "abstract":  "Mip-NeRF uses a multiscale representation with integrated positional encoding to handle scale ambiguity in NeRF."
+    },
+    {
+        "id":  "mvs-photometric",
+        "tags":  [
+                     "photometric stereo",
+                     "multi-view"
+                 ],
+        "year":  2020,
+        "link":  "https://berk95kaya.github.io/documents/multi_view_photometric_stereo_revisited.pdf",
+        "importance":  3,
+        "domainId":  "photometric-stereo",
+        "title":  "Multi View Photometric Stereo Revisited"
+    },
+    {
+        "year":  2024,
+        "link":  "https://arxiv.org/abs/2410.24164",
+        "id":  "pi0",
+        "innovation":  [
+                           "??? Flow Matching ?????",
+                           "???? embodiment ???",
+                           "??????????"
+                       ],
+        "tags":  [
+                     "foundational",
+                     "???"
+                 ],
+        "domainId":  "vla",
+        "results":  "???????????????????",
+        "importance":  5,
+        "authors":  "Physical Intelligence (Kevin Black, Noah Brown, et al.)",
+        "title":  "?0: A Vision-Language-Action Flow Model for General Robot Control",
+        "venue":  "arXiv Preprint",
+        "abstract":  "?0 is a vision-language-action flow model using flow-matching action head for general robot control."
+    },
+    {
+        "id":  "stereo-hdr",
+        "tags":  [
+                     "HDR",
+                     "GAN"
+                 ],
+        "year":  2020,
+        "link":  "https://z1fow0wh5tr.feishu.cn/wiki/TkN8wEnUbihCJGkK2rGcJocDn5c",
+        "importance":  2,
+        "domainId":  "stereo-hdr",
+        "title":  "New Stereo High Dynamic Range Imaging Method Using Generative Adversarial Networks"
+    },
+    {
+        "id":  "s3-nerf",
+        "tags":  [
+                     "NeRF",
+                     "reflectance"
+                 ],
+        "year":  2022,
+        "link":  "https://arxiv.org/pdf/2210.08936.pdf",
+        "importance":  3,
+        "domainId":  "photometric-stereo",
+        "title":  "S3-NeRF: Neural Reflectance Field from Shading and Shadow under a Single Viewpoint"
+    },
+    {
+        "id":  "polar-matting",
+        "title":  "Polarized Color Screen Matting",
+        "domainId":  "polarization",
+        "year":  2025,
+        "venue":  "CVPR 2025",
+        "link":  "",
+        "importance":  3,
+        "tags":  [
+                     "polarization",
+                     "matting"
+                 ]
+    },
+    {
+        "id":  "neisf_plus",
+        "title":  "NeISF+: Neural Incident Stokes Field for Polarized Inverse Rendering of Conductors and Dielectrics",
+        "domainId":  "polarization",
+        "year":  2025,
+        "venue":  "CVPR 2025",
+        "link":  "",
+        "importance":  3,
+        "tags":  [
+                     "polarization",
+                     "inverse rendering"
+                 ]
+    },
+    {
+        "year":  2020,
+        "link":  "https://arxiv.org/abs/2003.08934",
+        "id":  "nerf",
+        "innovation":  [
+                           "?? MLP ????????? 5D ?????",
+                           "?????????????",
+                           "??????????????"
+                       ],
+        "tags":  [
+                     "foundational",
+                     "???"
+                 ],
+        "domainId":  "nerf-3d",
+        "results":  "??????????????????PSNR ??? 4-5 dB",
+        "importance":  5,
+        "authors":  "Ben Mildenhall, Pratul P. Srinivasan, Matthew Tancik, Jonathan T. Barron, Ravi Ramamoorthi, Ren Ng",
+        "title":  "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
+        "venue":  "ECCV 2020 (Best Paper Honorable Mention)",
+        "abstract":  "We present a method that achieves state-of-the-art results for synthesizing novel views of complex scenes by optimizing an underlying continuous volumetric scene function using a sparse set of input views."
+    },
+    {
+        "id":  "polarfree",
+        "title":  "PolarFree: Polarization-based Reflection-Free Imaging",
+        "domainId":  "polarization",
+        "year":  2025,
+        "venue":  "CVPR 2025",
+        "link":  "",
+        "importance":  3,
+        "tags":  [
+                     "polarization",
+                     "reflection"
+                 ]
+    },
+    {
+        "year":  2024,
+        "link":  "https://arxiv.org/abs/2409.12467",
+        "id":  "smolvla",
+        "innovation":  [
+                           "???? 7B?0.5B-2B",
+                           "?? 90-95% ??????????? 3-5 ?"
+                       ],
+        "tags":  [
+                     "????",
+                     "????"
+                 ],
+        "domainId":  "vla",
+        "results":  "????? 70-90%??????? 3-5 ?",
+        "importance":  4,
+        "authors":  "Moo Jin Kim et al.",
+        "title":  "SmolVLA: Smaller Vision-Language-Action Models via Knowledge Distillation",
+        "venue":  "arXiv Preprint",
+        "abstract":  "SmolVLA explores scaling down VLA models through knowledge distillation from larger models like OpenVLA."
+    },
+    {
+        "id":  "booster",
+        "tags":  [
+                     "benchmark",
+                     "depth"
+                 ],
+        "year":  2023,
+        "link":  "https://arxiv.org/pdf/2301.08245",
+        "importance":  3,
+        "domainId":  "benchmark",
+        "title":  "Booster: a Benchmark for Depth from Images of Specular and Transparent Surfaces"
+    },
+    {
+        "id":  "polar-glossy",
+        "title":  "Glossy Object Reconstruction with Cost-effective Polarized Acquisition",
+        "domainId":  "polarization",
+        "year":  2025,
+        "venue":  "CVPR 2025",
+        "link":  "https://z1fow0wh5tr.feishu.cn/wiki/BdjKw4gLYiixWtkM07Dc3PqSnyd",
+        "importance":  3,
+        "tags":  [
+                     "polarization",
+                     "reconstruction"
+                 ]
+    },
+    {
+        "id":  "unsup-stereo",
+        "title":  "Unsupervised Learning of Stereo Matching",
+        "domainId":  "unsupervised-stereo",
+        "year":  2017,
+        "venue":  "ICCV 2017",
+        "link":  "https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhou_Unsupervised_Learning_of_ICCV_2017_paper.pdf",
+        "importance":  3,
+        "tags":  [
+                     "unsupervised",
+                     "stereo"
+                 ]
+    },
+    {
+        "id":  "deep-ps",
+        "title":  "Deep Photometric Stereo for Non-Lambertian Surfaces",
+        "domainId":  "photometric-stereo",
+        "year":  2020,
+        "venue":  "TPAMI 2020",
+        "link":  "https://guanyingc.github.io/papers/Chen_TPAMI2020.pdf",
+        "importance":  4,
+        "tags":  [
+                     "photometric stereo",
+                     "non-lambertian"
+                 ]
+    },
+    {
+        "year":  2023,
+        "link":  "https://arxiv.org/abs/2308.04079",
+        "id":  "3dgs",
+        "innovation":  [
+                           "???? 3D ?????????",
+                           "??????????",
+                           "???????"
+                       ],
+        "tags":  [
+                     "foundational",
+                     "???"
+                 ],
+        "domainId":  "nerf-3d",
+        "results":  "???????? SOTA??? 30+ fps??? 25-45 ??",
+        "importance":  5,
+        "authors":  "Bernhard Kerbl, Georgios Kopanas, Thomas Leimk?hler, George Drettakis",
+        "title":  "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+        "venue":  "ACM Transactions on Graphics (SIGGRAPH 2023)",
+        "abstract":  "We introduce 3D Gaussian Splatting, a new approach for real-time radiance field rendering using anisotropic 3D Gaussians."
+    },
+    {
+        "id":  "ua-mvs-ps",
+        "tags":  [
+                     "photometric stereo",
+                     "uncertainty"
+                 ],
+        "year":  2021,
+        "link":  "https://berk95kaya.github.io/documents/uncertainty_aware_deep_multiview_photometric_stereo.pdf",
+        "importance":  3,
+        "domainId":  "photometric-stereo",
+        "title":  "Uncertainty-Aware Deep Multi-View Photometric Stereo"
+    },
+    {
+        "year":  2024,
+        "link":  "https://arxiv.org/abs/2406.09246",
+        "id":  "openvla",
+        "innovation":  [
+                           "??????? VLA ???? 7B",
+                           "VLM+??????????? token",
+                           "LoRA ????????"
+                       ],
+        "tags":  [
+                     "foundational",
+                     "???"
+                 ],
+        "domainId":  "vla",
+        "results":  "????????????? RT-2-X ???? GPU 5 ?? LoRA ??",
+        "importance":  5,
+        "authors":  "Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, et al.",
+        "title":  "OpenVLA: An Open-Source Vision-Language-Action Model",
+        "venue":  "arXiv Preprint",
+        "abstract":  "OpenVLA is a 7B-parameter open-source VLA model fine-tuned from Prismatic-VLM."
+    },
+    {
+        "id":  "deep-pol-cues",
+        "title":  "Deep Polarization Cues for Single-shot Shape and Subsurface Scattering Estimation",
+        "domainId":  "polarization",
+        "year":  2024,
+        "venue":  "ECCV 2024",
+        "link":  "https://eccv.ecva.net/virtual/2024/poster/2394",
+        "importance":  3,
+        "tags":  [
+                     "polarization",
+                     "shape"
+                 ]
+    },
+    {
+        "id":  "layeredflow",
+        "tags":  [
+                     "benchmark",
+                     "optical flow"
+                 ],
+        "year":  2024,
+        "link":  "https://arxiv.org/pdf/2409.05688",
+        "importance":  3,
+        "domainId":  "benchmark",
+        "title":  "LayeredFlow: A Real-World Benchmark for Non-Lambertian Multi-Layer Optical Flow"
+    },
+    {
+        "id":  "cnn-ps",
+        "title":  "CNN-PS: CNN-based Photometric Stereo for General Non-Convex Surfaces",
+        "domainId":  "photometric-stereo",
+        "year":  2018,
+        "venue":  "ECCV 2018",
+        "link":  "https://arxiv.org/pdf/1808.10093.pdf",
+        "importance":  3,
+        "tags":  [
+                     "photometric stereo",
+                     "deep learning"
+                 ]
+    },
+    {
+        "id":  "polar-deblur",
+        "title":  "A Polarization-aided Transformer for Image Deblurring via Motion Vector Decomposition",
+        "domainId":  "polarization",
+        "year":  2025,
+        "venue":  "CVPR 2025",
+        "link":  "",
+        "importance":  3,
+        "tags":  [
+                     "polarization",
+                     "deblur"
+                 ]
+    },
+    {
+        "id":  "pisr",
+        "title":  "PISR: Polarimetric Neural Implicit Surface Reconstruction for Textureless and Specular Objects",
+        "domainId":  "polarization",
+        "year":  2024,
+        "venue":  "ECCV 2024",
+        "link":  "https://eccv.ecva.net/virtual/2024/poster/2031",
+        "importance":  3,
+        "tags":  [
+                     "polarization",
+                     "neural implicit"
+                 ]
+    },
+    {
+        "id":  "ps-nerf",
+        "tags":  [
+                     "photometric stereo",
+                     "NeRF"
+                 ],
+        "year":  2022,
+        "link":  "https://arxiv.org/pdf/2207.11406.pdf",
+        "importance":  4,
+        "domainId":  "photometric-stereo",
+        "title":  "PS-NeRF: Neural Inverse Rendering for Multi-view Photometric Stereo"
+    }
 ]

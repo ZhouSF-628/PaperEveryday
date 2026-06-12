@@ -1,30 +1,53 @@
 ﻿/* ============================================================
-   PaperEveryday - Renderer
-   DOM rendering: sidebar, cards, modal, form
+   PaperEveryday - Renderer v2
+   DOM rendering: sidebar, home, domain view, cards, modal, notes
    ============================================================ */
 
 const Renderer = {
   /* ---------- Sidebar ---------- */
-  renderSidebar(domains, activeDomainId) {
+  renderSidebar(domains, activeView) {
     const sidebar = document.getElementById('sidebar');
     sidebar.innerHTML = '';
 
+    // Navigation section
+    const navSection = document.createElement('div');
+    navSection.className = 'sidebar-section';
+    const navLabel = document.createElement('div');
+    navLabel.className = 'sidebar-label';
+    navLabel.textContent = '导航';
+    navSection.appendChild(navLabel);
+
+    const homeItem = document.createElement('div');
+    homeItem.className = 'sidebar-item' + (activeView === 'home' ? ' active' : '');
+    homeItem.innerHTML = '<span class="icon">🏠</span> 领域总览';
+    homeItem.addEventListener('click', () => App.goHome());
+    navSection.appendChild(homeItem);
+
+    const confItem = document.createElement('div');
+    confItem.className = 'sidebar-item' + (activeView === 'conferences' ? ' active' : '');
+    confItem.innerHTML = '<span class="icon">🏆</span> 会议链接';
+    confItem.addEventListener('click', () => App.showConferences());
+    navSection.appendChild(confItem);
+
+    sidebar.appendChild(navSection);
+
     // Domain section
-    const section = document.createElement('div');
-    section.className = 'sidebar-section';
-    const label = document.createElement('div');
-    label.className = 'sidebar-label';
-    label.textContent = '研究领域';
-    section.appendChild(label);
-    sidebar.appendChild(section);
+    const domSection = document.createElement('div');
+    domSection.className = 'sidebar-section';
+    const domLabel = document.createElement('div');
+    domLabel.className = 'sidebar-label';
+    domLabel.textContent = '研究领域';
+    domSection.appendChild(domLabel);
+    sidebar.appendChild(domSection);
 
     domains.forEach(d => {
+      const count = DataManager.getPaperCount(d.id);
       const item = document.createElement('div');
-      item.className = 'sidebar-item' + (d.id === activeDomainId ? ' active' : '');
+      item.className = 'sidebar-item' + (activeView === 'domain-' + d.id ? ' active' : '');
       item.dataset.domain = d.id;
-      item.innerHTML = `<span class="icon">${d.icon}</span> ${d.name}`;
+      item.innerHTML = `<span class="icon">${d.icon}</span> ${d.name}<span class="badge">${count}</span>`;
       item.addEventListener('click', () => App.switchDomain(d.id));
-      section.appendChild(item);
+      domSection.appendChild(item);
     });
 
     // Latest section
@@ -34,36 +57,77 @@ const Renderer = {
     latestLabel.className = 'sidebar-label';
     latestLabel.textContent = '动态';
     latestSection.appendChild(latestLabel);
-    sidebar.appendChild(latestSection);
 
     const latestItem = document.createElement('div');
-    latestItem.className = 'sidebar-item' + ('latest' === activeDomainId ? ' active' : '');
-    latestItem.dataset.domain = 'latest';
+    latestItem.className = 'sidebar-item' + (activeView === 'latest' ? ' active' : '');
     latestItem.innerHTML = '<span class="icon">🔥</span> 最新动态';
     latestItem.addEventListener('click', () => App.switchDomain('latest'));
     latestSection.appendChild(latestItem);
+    sidebar.appendChild(latestSection);
   },
 
-  /* ---------- Paper Cards Grid ---------- */
-  renderPapers(papers, domainId) {
+  /* ---------- Home: Domain Overview ---------- */
+  renderHome() {
     const container = document.getElementById('papers-container');
     const title = document.getElementById('main-title');
-    const domain = DataManager.getDomainById(domainId);
+    title.textContent = '🏠 领域总览';
+    document.getElementById('toolbar').style.display = 'none';
 
-    if (domain) {
-      title.textContent = `${domain.icon} ${domain.name}`;
-    } else if (domainId === 'latest') {
-      title.textContent = '🔥 最新动态';
-    } else {
-      title.textContent = '📄 全部论文';
-    }
+    const domains = DataManager.getDomains();
+
+    let html = `<div class="home-intro">
+      <p style="color:var(--color-text-muted);margin-bottom:24px;">选择领域查看论文详情，或从 ArXiv 获取最新论文</p>
+    </div>
+    <div class="domain-grid">`;
+
+    domains.forEach(d => {
+      const count = DataManager.getPaperCount(d.id);
+      const latest = DataManager.getLatestPapersPerDomain(d.id, 3);
+      let latestHtml = '';
+      if (latest.length > 0) {
+        latestHtml = '<div class="domain-latest-papers">';
+        latest.forEach(p => {
+          const hasNotes = DataManager.getNotesForPaper(p.title).length > 0;
+          latestHtml += `<div class="domain-latest-paper" onclick="event.stopPropagation(); App.showPaperDetail('${p.id}')">
+            📄 ${p.title.substring(0, 60)}${p.title.length > 60 ? '...' : ''}
+            ${hasNotes ? '<span class="note-badge">📝</span>' : ''}
+            <span class="domain-latest-year">${p.year || ''}</span>
+          </div>`;
+        });
+        latestHtml += '</div>';
+      }
+
+      html += `<div class="domain-card" onclick="App.switchDomain('${d.id}')">
+        <div class="domain-card-header">
+          <span class="domain-icon">${d.icon}</span>
+          <span class="domain-name">${d.name}</span>
+          <span class="domain-count">${count} 篇</span>
+        </div>
+        ${latestHtml}
+        <div class="domain-card-footer">点击查看全部 →</div>
+      </div>`;
+    });
+
+    html += '</div>';
+    container.innerHTML = html;
+  },
+
+  /* ---------- Domain Paper View ---------- */
+  renderDomainPapers(domainId, papers, searchTerm, sortBy) {
+    const container = document.getElementById('papers-container');
+    const title = document.getElementById('main-title');
+    const toolbar = document.getElementById('toolbar');
+    toolbar.style.display = 'flex';
+
+    const domain = DataManager.getDomainById(domainId);
+    title.textContent = domain ? `${domain.icon} ${domain.name}` : '📄 全部论文';
 
     if (!papers || papers.length === 0) {
       container.innerHTML = `
         <div class="empty-state">
           <div class="empty-icon">📭</div>
-          <div class="empty-text">还没有论文</div>
-          <div class="empty-hint">点击上方「+ 添加论文」开始整理</div>
+          <div class="empty-text">该领域暂无论文</div>
+          <div class="empty-hint">点击上方「+ 添加论文」手动添加，或在「最新动态」中从 ArXiv 收录</div>
         </div>
       `;
       return;
@@ -73,30 +137,28 @@ const Renderer = {
     grid.className = 'papers-grid';
 
     papers.forEach(paper => {
-      grid.appendChild(this._createCard(paper, domainId));
+      grid.appendChild(this._createPaperCard(paper, domainId));
     });
 
     container.innerHTML = '';
     container.appendChild(grid);
   },
 
-  /* ---------- Single Card ---------- */
-  _createCard(paper, domainId) {
+  /* ---------- Paper Card ---------- */
+  _createPaperCard(paper, domainId) {
     const card = document.createElement('div');
     card.className = 'paper-card';
     card.dataset.paperId = paper.id;
 
-    // Stars
+    const hasNotes = DataManager.getNotesForPaper(paper.title).length > 0;
     const starsHtml = Array.from({ length: 5 }, (_, i) =>
       `<span class="${i < (paper.importance || 0) ? 'star' : 'star-empty'}">★</span>`
     ).join('');
 
-    // Tags
     const tagsHtml = (paper.tags || []).map(t =>
       `<span class="tag ${t === 'foundational' || t === '代表作' ? 'tag-primary' : ''}">${t}</span>`
     ).join('');
 
-    // Venue/year
     const metaParts = [];
     if (paper.year) metaParts.push(paper.year);
     if (paper.venue) metaParts.push(paper.venue);
@@ -108,13 +170,16 @@ const Renderer = {
     card.innerHTML = `
       <div class="card-header">
         <div class="card-title">${this._escapeHtml(paper.title)}</div>
+        ${hasNotes ? '<span class="note-badge" title="有阅读笔记">📝</span>' : ''}
       </div>
       <div class="card-meta">${this._escapeHtml(metaParts.join(' · '))}</div>
+      ${paper.venue && !metaParts.some(p => p.includes(paper.venue)) ? `<div class="card-meta">${this._escapeHtml(paper.venue)}</div>` : ''}
       ${tagsHtml ? `<div class="card-tags">${tagsHtml}</div>` : ''}
       <div class="card-actions">
         <div class="card-stars">${starsHtml}</div>
         <div class="card-links">
           ${paper.link ? `<a href="${paper.link}" target="_blank" class="btn btn-sm" onclick="event.stopPropagation()">📄 论文</a>` : ''}
+          ${hasNotes ? `<span class="btn btn-sm" style="color:var(--color-primary)" onclick="event.stopPropagation(); App.showNoteForPaper('${paper.id}')">📝 笔记</span>` : ''}
           <button class="btn-icon" onclick="event.stopPropagation(); App.deletePaper('${paper.id}')" title="删除">🗑️</button>
         </div>
       </div>
@@ -133,13 +198,32 @@ const Renderer = {
       if (e.target === overlay) this.closeModal();
     });
 
+    const hasNotes = DataManager.getNotesForPaper(paper.title);
     const starsHtml = Array.from({ length: 5 }, (_, i) =>
       `<span class="${i < (paper.importance || 0) ? 'star' : 'star-empty'}">★</span>`
     ).join('');
-
     const tagsHtml = (paper.tags || []).map(t =>
       `<span class="tag ${t === 'foundational' || t === '代表作' ? 'tag-primary' : ''}">${t}</span>`
     ).join('');
+
+    let tabsHtml = `<div class="tab active" data-tab="abstract">摘要</div>
+      <div class="tab" data-tab="innovation">💡 创新点</div>
+      <div class="tab" data-tab="results">📊 结果对比</div>`;
+    if (hasNotes.length > 0) {
+      tabsHtml += `<div class="tab" data-tab="notes">📝 我的笔记</div>`;
+    }
+
+    let notesHtml = '';
+    if (hasNotes.length > 0) {
+      notesHtml = `<div class="tab-content" id="tab-notes">
+        ${hasNotes.map(n => `
+          <div class="note-entry">
+            <div class="note-meta">📅 ${n.date || ''} ${n.venue ? '· ' + n.venue : ''}</div>
+            <div class="note-content">${this._renderMarkdown(n.note)}</div>
+          </div>
+        `).join('')}
+      </div>`;
+    }
 
     overlay.innerHTML = `
       <div class="modal">
@@ -169,11 +253,7 @@ const Renderer = {
             <div class="field-value card-tags">${tagsHtml}</div>
           </div>` : ''}
 
-          <div class="tabs" id="detail-tabs">
-            <div class="tab active" data-tab="abstract">摘要</div>
-            <div class="tab" data-tab="innovation">💡 创新点</div>
-            <div class="tab" data-tab="results">📊 结果对比</div>
-          </div>
+          <div class="tabs" id="detail-tabs">${tabsHtml}</div>
 
           <div class="tab-content active" id="tab-abstract">
             <div class="field-value abstract">${this._escapeHtml(paper.abstract || '暂无摘要')}</div>
@@ -187,6 +267,7 @@ const Renderer = {
           <div class="tab-content" id="tab-results">
             <div class="results-block">${this._escapeHtml(paper.results || '暂无结果对比')}</div>
           </div>
+          ${notesHtml}
 
           <div class="form-actions" style="margin-top: 20px;">
             <button class="btn" onclick="App.editPaper('${paper.id}')">✏️ 编辑</button>
@@ -204,19 +285,79 @@ const Renderer = {
         overlay.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         overlay.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+        const tabContent = document.getElementById('tab-' + tab.dataset.tab);
+        if (tabContent) tabContent.classList.add('active');
       });
     });
 
-    // ESC to close
     this._escHandler = (e) => { if (e.key === 'Escape') this.closeModal(); };
     document.addEventListener('keydown', this._escHandler);
   },
 
-  /* ---------- Latest Papers ---------- */
-  renderLatest(latestData, domainKeywords) {
+  /* ---------- Note-Only Modal ---------- */
+  showNoteModal(paper) {
+    const notes = DataManager.getNotesForPaper(paper.title);
+    if (notes.length === 0) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) this.closeModal(); });
+
+    overlay.innerHTML = `
+      <div class="modal" style="max-width: 800px;">
+        <div class="modal-header">
+          <h2>📝 ${this._escapeHtml(paper.title)}</h2>
+          <button class="modal-close" onclick="Renderer.closeModal()">✕</button>
+        </div>
+        <div class="modal-body">
+          ${notes.map(n => `
+            <div class="note-entry">
+              <div class="note-meta">📅 ${n.date || ''} ${n.venue ? '· ' + n.venue : ''}</div>
+              <div class="note-content">${this._renderMarkdown(n.note)}</div>
+            </div>
+            <hr style="border:none;border-top:1px solid var(--color-border);margin:20px 0;">
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+    this._escHandler = (e) => { if (e.key === 'Escape') this.closeModal(); };
+    document.addEventListener('keydown', this._escHandler);
+  },
+
+  /* ---------- Conference Links ---------- */
+  renderConferences() {
     const container = document.getElementById('papers-container');
     const title = document.getElementById('main-title');
+    const toolbar = document.getElementById('toolbar');
+    toolbar.style.display = 'none';
+
+    title.textContent = '🏆 会议论文链接';
+
+    const confs = DataManager.getConferences();
+    let html = '<div class="conf-grid">';
+
+    confs.forEach(c => {
+      html += `<div class="conf-card">
+        <div class="conf-name">${c.icon} ${c.name}</div>
+        <div class="conf-links">`;
+      c.links.forEach(l => {
+        html += `<a href="${l.url}" target="_blank" class="conf-link">${l.year}</a>`;
+      });
+      html += `</div></div>`;
+    });
+
+    html += '</div>';
+    container.innerHTML = html;
+  },
+
+  /* ---------- Latest Papers ---------- */
+  renderLatest(latestData) {
+    const container = document.getElementById('papers-container');
+    const title = document.getElementById('main-title');
+    const toolbar = document.getElementById('toolbar');
+    toolbar.style.display = 'flex';
     title.textContent = '🔥 最新动态';
 
     if (!latestData || !latestData.papers || latestData.papers.length === 0) {
@@ -230,7 +371,7 @@ const Renderer = {
         <div class="empty-state">
           <div class="empty-icon">🔍</div>
           <div class="empty-text">暂无最新论文</div>
-          <div class="empty-hint">运行 GitHub Actions 或本地脚本从 ArXiv 拉取最新论文</div>
+          <div class="empty-hint">运行 GitHub Actions 或本地脚本从 ArXiv 拉取，或点击手动刷新</div>
         </div>
       `;
       return;
@@ -240,16 +381,14 @@ const Renderer = {
       ? new Date(latestData.fetchedAt).toLocaleString('zh-CN')
       : '未知';
 
-    // Filter to relevant domains using keywords
-    const allKeywords = (DataManager.getDomains() || []).flatMap(d => d.keywords).map(k => k.toLowerCase());
+    const allKeywords = DataManager.getDomains().flatMap(d => d.keywords).map(k => k.toLowerCase());
     const filtered = latestData.papers.filter(p => {
       const text = (p.title + ' ' + (p.abstract || '')).toLowerCase();
       return allKeywords.some(kw => text.includes(kw));
     });
-
     const displayPapers = filtered.length > 0 ? filtered : latestData.papers;
 
-    let html = `
+    let headerHtml = `
       <div class="latest-header">
         <div class="latest-meta">🕐 上次更新: ${fetchDate} · 显示 ${displayPapers.length} 篇相关论文</div>
         <span>
@@ -272,7 +411,6 @@ const Renderer = {
         const shortAuthors = paper.authors.split(',')[0] + (paper.authors.includes(',') ? ' et al.' : '');
         metaParts.unshift(shortAuthors);
       }
-
       const isBookmarked = paper._bookmarked;
       const isAdded = DataManager._data.papers.some(p => p.id === paper.id || (p.arxivId && p.arxivId === paper.arxivId));
 
@@ -298,17 +436,14 @@ const Renderer = {
       grid.appendChild(card);
     });
 
-    container.innerHTML = '';
+    container.innerHTML = headerHtml;
     container.appendChild(grid);
   },
 
   showLatestDetail(paper) {
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
-    overlay.id = 'paper-modal';
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) this.closeModal();
-    });
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) this.closeModal(); });
 
     overlay.innerHTML = `
       <div class="modal">
@@ -321,23 +456,14 @@ const Renderer = {
             <div class="field-label">作者</div>
             <div class="field-value">${this._escapeHtml(paper.authors || '—')}</div>
           </div>
-          <div class="field">
-            <div class="field-label">年份</div>
-            <div class="field-value">${paper.year || '—'}</div>
-          </div>
-          ${paper.arxivId ? `<div class="field">
-            <div class="field-label">ArXiv ID</div>
-            <div class="field-value">${paper.arxivId}</div>
-          </div>` : ''}
-          ${paper.link ? `<div class="field">
-            <div class="field-label">链接</div>
-            <div class="field-value"><a href="${paper.link}" target="_blank">${paper.link}</a></div>
-          </div>` : ''}
+          <div class="field"><div class="field-label">年份</div><div class="field-value">${paper.year || '—'}</div></div>
+          ${paper.arxivId ? `<div class="field"><div class="field-label">ArXiv ID</div><div class="field-value">${paper.arxivId}</div></div>` : ''}
+          ${paper.link ? `<div class="field"><div class="field-label">链接</div><div class="field-value"><a href="${paper.link}" target="_blank">${paper.link}</a></div></div>` : ''}
           <div class="field">
             <div class="field-label">摘要</div>
             <div class="field-value abstract">${this._escapeHtml(paper.abstract || '暂无摘要')}</div>
           </div>
-          <div class="form-actions" style="margin-top: 20px;">
+          <div class="form-actions" style="margin-top:20px;">
             <button class="btn btn-primary" onclick="App.addFromLatest('${paper.id}'); Renderer.closeModal();">📥 纳入管理</button>
             <button class="btn" onclick="App.toggleBookmark('${paper.id}'); Renderer.closeModal();">${paper._bookmarked ? '⭐ 已收藏' : '☆ 收藏'}</button>
           </div>
@@ -366,7 +492,7 @@ const Renderer = {
     ).join('');
 
     overlay.innerHTML = `
-      <div class="modal">
+      <div class="modal" style="max-width: 780px;">
         <div class="modal-header">
           <h2>${isEdit ? '✏️ 编辑论文' : '➕ 添加论文'}</h2>
           <button class="modal-close" onclick="Renderer.closeModal()">✕</button>
@@ -438,7 +564,6 @@ const Renderer = {
 
     document.body.appendChild(overlay);
 
-    // Form submit
     document.getElementById('paper-form').addEventListener('submit', () => {
       const data = {
         title: document.getElementById('f-title').value.trim(),
@@ -454,12 +579,7 @@ const Renderer = {
         innovation: document.getElementById('f-innovation').value.split('\n').map(t => t.trim()).filter(Boolean),
         results: document.getElementById('f-results').value.trim()
       };
-
-      if (!data.title) {
-        alert('请输入论文标题');
-        return;
-      }
-
+      if (!data.title) { alert('请输入论文标题'); return; }
       if (isEdit) {
         DataManager.updatePaper(p.id, data);
         App.showToast('论文已更新', 'success');
@@ -467,7 +587,6 @@ const Renderer = {
         DataManager.addPaper(data);
         App.showToast('论文已添加', 'success');
       }
-
       this.closeModal();
       App.renderCurrentView();
     });
@@ -490,5 +609,46 @@ const Renderer = {
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
+  },
+
+  /* ---------- Simple Markdown Renderer for Notes ---------- */
+  _renderMarkdown(text) {
+    if (!text) return '';
+    let html = this._escapeHtml(text);
+
+    // Code blocks
+    html = html.replace(/```(\w*)\n?([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+
+    // Inline code
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+    // Bold
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+
+    // Italic
+    html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    // Lists
+    html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+
+    // Blockquotes
+    html = html.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+
+    // LaTeX inline: $...$
+    html = html.replace(/\$([^$]+)\$/g, '<span class="math">$$$1$$</span>');
+
+    // LaTeX display: $$...$$
+    html = html.replace(/\$\$([\s\S]*?)\$\$/g, '<div class="math-block">$$$1$$</div>');
+
+    // Lines to paragraphs
+    html = html.replace(/\n\n/g, '</p><p>');
+    html = '<p>' + html + '</p>';
+
+    // Clean up nested paragraphs
+    html = html.replace(/<p><\/p>/g, '');
+    html = html.replace(/<li><\/li>/g, '');
+
+    return html;
   }
 };

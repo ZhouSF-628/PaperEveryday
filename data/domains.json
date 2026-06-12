@@ -1,14 +1,188 @@
 ﻿[
-  {
-    "id": "3d-recon",
-    "name": "三维重建",
-    "icon": "📐",
-    "keywords": ["3D reconstruction", "NeRF", "3D Gaussian Splatting", "Neural Rendering", "Novel View Synthesis", "Volume Rendering"]
-  },
-  {
-    "id": "vla",
-    "name": "VLA",
-    "icon": "🤖",
-    "keywords": ["Vision-Language-Action", "VLA", "robotic manipulation", "open-vocabulary manipulation", "imitation learning", "policy learning"]
-  }
+    {
+        "icon":  "???",
+        "name":  "Arbitrary-Scale Super-Resolution",
+        "id":  "super-resolution",
+        "keywords":  [
+                         "Super-Resolution",
+                         "Super Resolution",
+                         "Continuous Super-Resolution",
+                         "Arbitrary-scale",
+                         "LIIF",
+                         "INR",
+                         "implicit representation",
+                         "image super-resolution"
+                     ]
+    },
+    {
+        "icon":  "???",
+        "name":  "Stereo Matching",
+        "id":  "stereo-matching",
+        "keywords":  [
+                         "Stereo Matching",
+                         "stereo",
+                         "disparity",
+                         "depth estimation"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Mono Depth",
+        "id":  "mono-depth",
+        "keywords":  [
+                         "Monocular Depth",
+                         "depth estimation",
+                         "mono depth"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Unsupervised Stereo",
+        "id":  "unsupervised-stereo",
+        "keywords":  [
+                         "Unsupervised",
+                         "Stereo",
+                         "self-supervised"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Stereo HDR",
+        "id":  "stereo-hdr",
+        "keywords":  [
+                         "HDR",
+                         "High Dynamic Range",
+                         "Stereo HDR"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Polarization",
+        "id":  "polarization",
+        "keywords":  [
+                         "Polarization",
+                         "polarimetric",
+                         "polarized",
+                         "Stokes"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "2D Implicit Neural Representation",
+        "id":  "implicit-neural-rep",
+        "keywords":  [
+                         "Implicit Neural",
+                         "INR",
+                         "Neural Representation",
+                         "LIIF",
+                         "continuous image"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Flow Matching",
+        "id":  "flow-matching",
+        "keywords":  [
+                         "Flow Matching",
+                         "optical flow",
+                         "scene flow"
+                     ]
+    },
+    {
+        "icon":  "?",
+        "name":  "Lightweight Image Super-Resolution",
+        "id":  "lightweight-sr",
+        "keywords":  [
+                         "Lightweight",
+                         "efficient",
+                         "Super-Resolution",
+                         "fast"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Dual Lens Super-Resolution",
+        "id":  "dual-lens-sr",
+        "keywords":  [
+                         "Dual Lens",
+                         "Dual Camera",
+                         "Super-Resolution"
+                     ]
+    },
+    {
+        "icon":  "?",
+        "name":  "Image Enhancement",
+        "id":  "image-enhancement",
+        "keywords":  [
+                         "Image Enhancement",
+                         "image restoration",
+                         "denoising",
+                         "deblurring"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Light Field",
+        "id":  "light-field",
+        "keywords":  [
+                         "Light Field",
+                         "lightfield",
+                         "plenoptic"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Flare Removal",
+        "id":  "flare-removal",
+        "keywords":  [
+                         "Flare Removal",
+                         "lens flare",
+                         "reflection removal"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Benchmark/Dataset",
+        "id":  "benchmark",
+        "keywords":  [
+                         "benchmark",
+                         "dataset"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "Photometric Stereo",
+        "id":  "photometric-stereo",
+        "keywords":  [
+                         "Photometric Stereo",
+                         "PS",
+                         "surface normal",
+                         "shape from"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "3D Reconstruction (NeRF/3DGS)",
+        "id":  "nerf-3d",
+        "keywords":  [
+                         "NeRF",
+                         "3D Gaussian",
+                         "3D reconstruction",
+                         "Neural Radiance",
+                         "Gaussian Splatting",
+                         "Novel View"
+                     ]
+    },
+    {
+        "icon":  "??",
+        "name":  "VLA (Vision-Language-Action)",
+        "id":  "vla",
+        "keywords":  [
+                         "Vision-Language-Action",
+                         "VLA",
+                         "robot",
+                         "manipulation",
+                         "policy"
+                     ]
+    }
 ]

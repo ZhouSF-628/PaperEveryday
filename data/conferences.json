@@ -1,0 +1,120 @@
+﻿[
+    {
+        "icon":  "??",
+        "links":  [
+                      {
+                          "year":  "2025",
+                          "url":  "https://openaccess.thecvf.com/menu"
+                      }
+                  ],
+        "name":  "CVF (CVPR/ICCV/WACV)",
+        "id":  "cvf"
+    },
+    {
+        "icon":  "??",
+        "links":  [
+                      {
+                          "year":  "2025",
+                          "url":  "https://openaccess.thecvf.com/CVPR2025"
+                      },
+                      {
+                          "year":  "2024",
+                          "url":  "https://openaccess.thecvf.com/CVPR2024"
+                      },
+                      {
+                          "year":  "2023",
+                          "url":  "https://openaccess.thecvf.com/CVPR2023"
+                      },
+                      {
+                          "year":  "2022",
+                          "url":  "https://openaccess.thecvf.com/CVPR2022"
+                      },
+                      {
+                          "year":  "2021",
+                          "url":  "https://openaccess.thecvf.com/CVPR2021"
+                      },
+                      {
+                          "year":  "2020",
+                          "url":  "https://openaccess.thecvf.com/CVPR2020"
+                      }
+                  ],
+        "name":  "CVPR",
+        "id":  "cvpr"
+    },
+    {
+        "icon":  "??",
+        "links":  [
+                      {
+                          "year":  "2025",
+                          "url":  "https://openaccess.thecvf.com/ICCV2025"
+                      },
+                      {
+                          "year":  "2023",
+                          "url":  "https://openaccess.thecvf.com/ICCV2023"
+                      },
+                      {
+                          "year":  "2021",
+                          "url":  "https://openaccess.thecvf.com/ICCV2021"
+                      },
+                      {
+                          "year":  "2019",
+                          "url":  "https://openaccess.thecvf.com/ICCV2019"
+                      }
+                  ],
+        "name":  "ICCV",
+        "id":  "iccv"
+    },
+    {
+        "icon":  "??",
+        "links":  [
+                      {
+                          "year":  "2024",
+                          "url":  "https://www.ecva.net/papers.php"
+                      },
+                      {
+                          "year":  "2022",
+                          "url":  "https://eccv2022.ecva.net/program/accepted-papers/"
+                      }
+                  ],
+        "name":  "ECCV",
+        "id":  "eccv"
+    },
+    {
+        "icon":  "??",
+        "links":  [
+                      {
+                          "year":  "2024",
+                          "url":  "https://nips.cc/virtual/2024/papers.html?filter=titles"
+                      },
+                      {
+                          "year":  "2023",
+                          "url":  "https://papers.nips.cc/paper_files/paper/2023"
+                      }
+                  ],
+        "name":  "NeurIPS",
+        "id":  "neurips"
+    },
+    {
+        "icon":  "??",
+        "links":  [
+                      {
+                          "year":  "2023",
+                          "url":  "https://iccp2023.iccp-conference.org/conference-program/"
+                      },
+                      {
+                          "year":  "2022",
+                          "url":  "https://iccp2022.iccp-conference.org/program/"
+                      },
+                      {
+                          "year":  "2020",
+                          "url":  "https://iccp2020.engr.wustl.edu/"
+                      },
+                      {
+                          "year":  "2019",
+                          "url":  "http://iccp2019.naist.jp/"
+                      }
+                  ],
+        "name":  "ICCP",
+        "id":  "iccp"
+    }
+]

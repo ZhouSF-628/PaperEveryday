@@ -1,41 +1,48 @@
 ﻿/* ============================================================
-   PaperEveryday - Data Manager
-   Handles JSON loading, saving, CRUD, import/export
+   PaperEveryday - Data Manager v2
+   Handles all JSON data: domains, papers, conferences, notes
    ============================================================ */
 
 const DataManager = {
-  _data: { domains: [], papers: [], latest: { fetchedAt: null, papers: [] } },
+  _data: {
+    domains: [],
+    papers: [],
+    latest: { fetchedAt: null, papers: [] },
+    conferences: [],
+    notes: []
+  },
   _dirty: false,
 
   /* ---------- Initialization ---------- */
   async init() {
     try {
-      const [domains, papers, latest] = await Promise.all([
+      const [domains, papers, latest, conferences, notes] = await Promise.all([
         this._loadJSON('data/domains.json'),
         this._loadJSON('data/papers.json'),
-        this._loadJSON('data/latest.json')
+        this._loadJSON('data/latest.json'),
+        this._loadJSON('data/conferences.json'),
+        this._loadJSON('data/notes.json')
       ]);
-      this._data.domains = domains;
-      this._data.papers = papers;
+      this._data.domains = domains || [];
+      this._data.papers = papers || [];
+      this._data.conferences = conferences || [];
+      this._data.notes = notes || [];
 
-      // Merge latest papers (from file or localStorage backup)
+      // Restore latest from localStorage
       const saved = this._loadLocal('papereveryday_latest');
       this._data.latest = latest || { fetchedAt: null, papers: [] };
       if (saved && saved.fetchedAt) {
-        // Prefer saved version (may have user bookmarks)
         if (!this._data.latest.fetchedAt || new Date(saved.fetchedAt) > new Date(this._data.latest.fetchedAt)) {
           this._data.latest = saved;
         }
       }
 
-      // Merge local edits to papers
+      // Merge local edits
       const localPapers = this._loadLocal('papereveryday_papers');
       if (localPapers) {
-        // Merge: local edits overlay file version
         const merged = this._mergePapers(this._data.papers, localPapers);
         this._data.papers = merged;
       }
-
       this._dirty = false;
     } catch (e) {
       console.error('DataManager.init error:', e);
@@ -48,7 +55,6 @@ const DataManager = {
     return resp.json();
   },
 
-  /* ---------- Local Storage ---------- */
   _loadLocal(key) {
     try {
       const raw = localStorage.getItem(key);
@@ -58,16 +64,14 @@ const DataManager = {
 
   _saveLocal(key, data) {
     try { localStorage.setItem(key, JSON.stringify(data)); }
-    catch { /* quota exceeded - ignore */ }
+    catch { /* ignore */ }
   },
 
-  /* ---------- Merge local edits ---------- */
   _mergePapers(filePapers, localPapers) {
     const map = new Map();
     filePapers.forEach(p => map.set(p.id, { ...p, _source: 'file' }));
     localPapers.forEach(p => {
       if (map.has(p.id)) {
-        // File version is source of truth for fields not edited locally
         const existing = map.get(p.id);
         if (p._edited) {
           map.set(p.id, { ...existing, ...p, _edited: true, _source: 'local' });
@@ -81,15 +85,38 @@ const DataManager = {
 
   /* ---------- Getters ---------- */
   getDomains() { return this._data.domains; },
+  getDomainById(id) { return this._data.domains.find(d => d.id === id); },
+
   getPapers(domainId) {
     if (!domainId) return this._data.papers;
     return this._data.papers.filter(p => p.domainId === domainId);
   },
+
   getPaper(id) { return this._data.papers.find(p => p.id === id); },
   getLatest() { return this._data.latest; },
+  getConferences() { return this._data.conferences; },
+  getNotes() { return this._data.notes; },
 
-  getDomainById(id) { return this._data.domains.find(d => d.id === id); },
-  getDomainPapers(domainId) { return this._data.papers.filter(p => p.domainId === domainId); },
+  /** Get notes for a specific paper by matching title */
+  getNotesForPaper(title) {
+    if (!title) return [];
+    const t = title.toLowerCase().trim().replace(/[^a-z0-9\s]/g, '');
+    return this._data.notes.filter(n => {
+      const nt = (n.title || '').toLowerCase().trim().replace(/[^a-z0-9\s]/g, '');
+      return nt.includes(t) || t.includes(nt);
+    });
+  },
+
+  /** Get latest papers per domain (for domain overview) */
+  getLatestPapersPerDomain(domainId, count = 3) {
+    let papers = this._data.papers.filter(p => p.domainId === domainId && p.year);
+    papers.sort((a, b) => (b.year || 0) - (a.year || 0));
+    return papers.slice(0, count);
+  },
+
+  getPaperCount(domainId) {
+    return this._data.papers.filter(p => p.domainId === domainId).length;
+  },
 
   /* ---------- Paper CRUD ---------- */
   addPaper(paper) {
@@ -120,7 +147,6 @@ const DataManager = {
     return true;
   },
 
-  /* ---------- Paper from latest -> important ---------- */
   addFromLatest(paperId) {
     const lp = this._data.latest.papers.find(p => p.id === paperId);
     if (!lp) return null;
@@ -138,7 +164,6 @@ const DataManager = {
   },
 
   _guessDomain(paper) {
-    // Simple keyword-based domain assignment
     const text = (paper.title + ' ' + (paper.abstract || '')).toLowerCase();
     for (const d of this._data.domains) {
       for (const kw of d.keywords) {
@@ -148,7 +173,6 @@ const DataManager = {
     return this._data.domains[0]?.id || 'unknown';
   },
 
-  /* ---------- Latest papers bookmark toggle ---------- */
   toggleLatestBookmark(paperId) {
     const p = this._data.latest.papers.find(x => x.id === paperId);
     if (!p) return;
@@ -156,7 +180,6 @@ const DataManager = {
     this._saveLocal('papereveryday_latest', this._data.latest);
   },
 
-  /* ---------- Persistence ---------- */
   _persistPapers() {
     const localPapers = this._data.papers.filter(p => p._source === 'local' || p._edited);
     this._saveLocal('papereveryday_papers', localPapers);
@@ -165,7 +188,7 @@ const DataManager = {
   /* ---------- Export / Import ---------- */
   exportData() {
     const exportObj = {
-      version: 1,
+      version: 2,
       exportedAt: new Date().toISOString(),
       domains: this._data.domains,
       papers: this._data.papers.map(p => {
@@ -192,7 +215,6 @@ const DataManager = {
             reject(new Error('无效的数据文件'));
             return;
           }
-          // Merge imported papers
           const existingIds = new Set(this._data.papers.map(p => p.id));
           let imported = 0;
           data.papers.forEach(p => {

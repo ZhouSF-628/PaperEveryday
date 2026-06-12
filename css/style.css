@@ -692,3 +692,226 @@ a:hover { text-decoration: underline; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+
+/* ============================================================
+   PaperEveryday v2 - New Styles
+   Domain overview, conference links, notes, math
+   ============================================================ */
+
+/* --- Domain Grid (Home) --- */
+.domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.domain-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.domain-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-bg);
+  transform: translateY(-2px);
+}
+
+.domain-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.domain-icon { font-size: 1.6rem; }
+
+.domain-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.domain-count {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  padding: 2px 10px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+.domain-latest-papers {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.domain-latest-paper {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  line-height: 1.3;
+}
+
+.domain-latest-paper:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.domain-latest-year {
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.domain-card-footer {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: var(--color-primary);
+  text-align: right;
+}
+
+/* --- Conference Links --- */
+.conf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.conf-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+}
+
+.conf-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.conf-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.conf-link {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.conf-link:hover {
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+}
+
+/* --- Notes Display --- */
+.note-badge {
+  font-size: 0.85rem;
+  cursor: help;
+  flex-shrink: 0;
+}
+
+.note-entry {
+  margin-bottom: 16px;
+}
+
+.note-meta {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.note-content {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.note-content p {
+  margin-bottom: 10px;
+}
+
+.note-content li {
+  margin-left: 18px;
+  margin-bottom: 4px;
+}
+
+.note-content blockquote {
+  border-left: 3px solid var(--color-primary);
+  padding: 6px 12px;
+  margin: 10px 0;
+  background: var(--color-bg);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+.note-content code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--color-tag-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.note-content pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  margin: 10px 0;
+  font-size: 0.8rem;
+}
+
+.note-content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.note-content ul {
+  margin: 8px 0;
+}
+
+.note-content strong {
+  color: var(--color-text);
+}
+
+.math, .math-block {
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+}
+
+/* --- Home intro --- */
+.home-intro {
+  margin-bottom: 4px;
+}
+
+/* --- Toast fix for long messages --- */
+.toast {
+  max-width: 400px;
+  word-wrap: break-word;
+}
