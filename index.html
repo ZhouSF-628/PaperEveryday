@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PaperEveryday - 论文追踪</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button class="mobile-menu-btn" id="menu-toggle" aria-label="菜单">☰</button>
+      <div class="header-logo">Paper<span>Everyday</span></div>
+    </div>
+    <div class="header-right">
+      <button class="btn btn-primary" id="btn-add">➕ <span>添加论文</span></button>
+      <button class="btn" id="btn-export">📤 <span>导出</span></button>
+      <button class="btn" id="btn-import">📥 <span>导入</span></button>
+    </div>
+  </header>
+
+  <!-- Layout -->
+  <div class="layout">
+
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <!-- Rendered by JS -->
+    </nav>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="main-header">
+        <h1 class="main-title" id="main-title">📄 加载中...</h1>
+        <div class="main-actions" id="main-actions">
+          <!-- Rendered by JS if needed -->
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" placeholder="搜索论文标题、作者、关键词..." autocomplete="off">
+        </div>
+        <select class="filter-select" id="sort-select">
+          <option value="importance">按重要性</option>
+          <option value="year">按年份</option>
+          <option value="title">按标题</option>
+        </select>
+      </div>
+
+      <div id="papers-container">
+        <!-- Rendered by JS -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data-manager.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/arxiv.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

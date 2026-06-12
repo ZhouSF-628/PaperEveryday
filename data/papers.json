@@ -1,0 +1,121 @@
+﻿[
+  {
+    "id": "nerf",
+    "domainId": "3d-recon",
+    "title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
+    "authors": "Ben Mildenhall, Pratul P. Srinivasan, Matthew Tancik, Jonathan T. Barron, Ravi Ramamoorthi, Ren Ng",
+    "year": 2020,
+    "venue": "ECCV 2020 (Best Paper Honorable Mention)",
+    "arxivId": "2003.08934",
+    "abstract": "We present a method that achieves state-of-the-art results for synthesizing novel views of complex scenes by optimizing an underlying continuous volumetric scene function using a sparse set of input views. The algorithm represents a scene using a fully-connected (non-convolutional) deep network, whose input is a single continuous 5D coordinate (spatial location (x,y,z) and viewing direction (θ,φ)) and whose output is the volume density and view-dependent emitted radiance at that spatial location.",
+    "innovation": [
+      "使用 MLP 隐式表示场景的连续 5D 神经辐射场",
+      "可微体积渲染实现端到端优化",
+      "位置编码（Positional Encoding）提升高频细节表达能力",
+      "视图依赖的辐射度输出支持逼真的视角效果"
+    ],
+    "results": "在新视角合成任务上显著优于此前方法（如 LSR、SRN），PSNR 比之前最佳方法高出约 4-5 dB。真实场景和合成场景均取得 SOTA 效果。",
+    "link": "https://arxiv.org/abs/2003.08934",
+    "tags": ["foundational", "代表作"],
+    "importance": 5
+  },
+  {
+    "id": "3dgs",
+    "domainId": "3d-recon",
+    "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+    "authors": "Bernhard Kerbl, Georgios Kopanas, Thomas Leimkühler, George Drettakis",
+    "year": 2023,
+    "venue": "ACM Transactions on Graphics (SIGGRAPH 2023)",
+    "arxivId": "2308.04079",
+    "abstract": "We introduce 3D Gaussian Splatting, a new approach for real-time radiance field rendering. Our method represents scenes as a collection of anisotropic 3D Gaussians, optimized via differentiable rasterization. This representation enables fast training and real-time rendering at high quality, bridging the gap between implicit NeRF-like methods and explicit point-based approaches.",
+    "innovation": [
+      "用各向异性 3D 高斯椭球体显式表示场景，替代 NeRF 的隐式 MLP",
+      "可微分光栅化渲染器实现高效训练和实时渲染",
+      "自适应密度控制（分裂/克隆）自动调节高斯数量",
+      "首个同时实现快速训练（<30min）和实时渲染（>30fps）的辐射场方法"
+    ],
+    "results": "在 NeRF-Synthetic、Mip-NeRF 360、Tanks&Temples、Deep Blending 等多个基准上达到或超越 SOTA 质量，渲染速度达到 30+ fps（RTX 3090），训练时间约 25-45 分钟。",
+    "link": "https://arxiv.org/abs/2308.04079",
+    "tags": ["foundational", "代表作"],
+    "importance": 5
+  },
+  {
+    "id": "mipnerf",
+    "domainId": "3d-recon",
+    "title": "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields",
+    "authors": "Jonathan T. Barron, Ben Mildenhall, Matthew Tancik, Peter Hedman, Ricardo Martin-Brualla, Pratul P. Srinivasan",
+    "year": 2021,
+    "venue": "ICCV 2021",
+    "arxivId": "2103.13415",
+    "abstract": "NeRF has shown impressive results for novel view synthesis, but it suffers from aliasing artifacts when rendering at different resolutions or from varying camera distances. We propose mip-NeRF, which uses a multiscale representation with integrated positional encoding to handle scale ambiguity. Our method achieves better results than NeRF while being more efficient.",
+    "innovation": [
+      "集成位置编码（Integrated Positional Encoding）替代原始位置编码",
+      "通过圆锥沿光线采样替代点采样，自然处理多尺度问题",
+      "用 IPE 特征向量表示体积区域而非点，消除抗锯齿问题"
+    ],
+    "results": "在多尺度数据集上显著超越 NeRF，PSNR 提升约 8-10%，同时训练速度略快于 NeRF。",
+    "link": "https://arxiv.org/abs/2103.13415",
+    "tags": ["important", "改进工作"],
+    "importance": 4
+  },
+  {
+    "id": "openvla",
+    "domainId": "vla",
+    "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+    "authors": "Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, Ted Xiao, Ashwin Balakrishna, Suraj Nair, Rafael Rafailov, Ethan Foster, Pannag R. Sanketi, Quan Vuong, Thomas Kollar, Benjamin Burchfiel, Russ Tedrake, Dorsa Sadigh, Sergey Levine, Percy Liang, Chelsea Finn",
+    "year": 2024,
+    "venue": "arXiv Preprint",
+    "arxivId": "2406.09246",
+    "abstract": "OpenVLA is a 7B-parameter open-source Vision-Language-Action model, fine-tuned from a pretrained Prismatic-VLM (which combines a SigLIP vision encoder and a Llama 2 language model). It takes robot camera images and language instructions as input and directly outputs robot action tokens. The model is trained on the Open X-Embodiment dataset, the largest open-source robot manipulation dataset.",
+    "innovation": [
+      "首个开源的大规模 VLA 基础模型（7B 参数）",
+      "VLM + 动作头（action head）架构，语言模型直接输出动作 token",
+      "在 Open X-Embodiment 大规模数据集上训练，跨 embodiment 泛化",
+      "支持 LoRA 微调，适应特定机器人平台"
+    ],
+    "results": "在多个机器人平台（Google Robot、BridgeData v2、TacoPlay）上达到或超越 RT-2-X 等闭源模型的性能。LoRA 微调后可在单个 GPU 上 5 小时内完成领域适配。",
+    "link": "https://arxiv.org/abs/2406.09246",
+    "tags": ["foundational", "代表作"],
+    "importance": 5
+  },
+  {
+    "id": "pi0",
+    "domainId": "vla",
+    "title": "π0: A Vision-Language-Action Flow Model for General Robot Control",
+    "authors": "Physical Intelligence (Kevin Black, Noah Brown, et al.)",
+    "year": 2024,
+    "venue": "arXiv Preprint",
+    "arxivId": "2410.24164",
+    "abstract": "We introduce π0 (pi-zero), a vision-language-action flow model for general robot control. π0 is a large model pre-trained on diverse robot demonstration data spanning multiple embodiments and tasks. The model uses a flow-matching action head to predict continuous action sequences, enabling smooth and precise robot control from visual and language inputs.",
+    "innovation": [
+      "流匹配（Flow Matching）动作预测头，生成连续平滑动作序列",
+      "大规模多 embodiment 预训练，支持多种机器人平台",
+      "联合视觉-语言-动作的流式架构",
+      "支持语言条件化和目标条件化任务指定"
+    ],
+    "results": "在多个日常操作任务（叠衣服、组装零件、清理桌面等）上展现出强大的泛化能力，在 Physical Intelligence 的机器人平台上达到高成功率。",
+    "link": "https://arxiv.org/abs/2410.24164",
+    "tags": ["foundational", "代表作"],
+    "importance": 5
+  },
+  {
+    "id": "smolvla",
+    "domainId": "vla",
+    "title": "SmolVLA: Smaller Vision-Language-Action Models via Knowledge Distillation",
+    "authors": "Moo Jin Kim, et al.",
+    "year": 2024,
+    "venue": "arXiv Preprint",
+    "arxivId": "2409.12467",
+    "abstract": "SmolVLA explores scaling down VLA models through knowledge distillation from larger models like OpenVLA. It demonstrates that compact VLA models can retain much of the capability of their larger counterparts while being significantly more practical for real-time robot control.",
+    "innovation": [
+      "知识蒸馏将 7B VLA 压缩至 0.5B-2B 参数",
+      "在保持高性能的同时大幅降低推理成本",
+      "适用于边缘设备和实时控制场景",
+      "系统分析 VLA 模型规模与性能的权衡关系"
+    ],
+    "results": "压缩后的模型在多个任务上达到 OpenVLA 性能的 90-95%，推理速度提升 3-5 倍，参数量减少 70-90%。",
+    "link": "https://arxiv.org/abs/2409.12467",
+    "tags": ["重要工作", "模型压缩"],
+    "importance": 4
+  }
+]

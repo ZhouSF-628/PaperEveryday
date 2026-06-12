@@ -1,0 +1,14 @@
+﻿[
+  {
+    "id": "3d-recon",
+    "name": "三维重建",
+    "icon": "📐",
+    "keywords": ["3D reconstruction", "NeRF", "3D Gaussian Splatting", "Neural Rendering", "Novel View Synthesis", "Volume Rendering"]
+  },
+  {
+    "id": "vla",
+    "name": "VLA",
+    "icon": "🤖",
+    "keywords": ["Vision-Language-Action", "VLA", "robotic manipulation", "open-vocabulary manipulation", "imitation learning", "policy learning"]
+  }
+]
