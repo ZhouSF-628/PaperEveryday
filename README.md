@@ -16,14 +16,6 @@
 - **数据导入导出**：JSON 格式，方便备份和分享
 - **响应式设计**：桌面/平板/手机自适应
 
-## 🚀 快速开始
-
-
-### 部署到 GitHub Pages
-
-1. 将本仓库推送到 GitHub
-2. 在仓库 Settings → Pages 中，选择 `main` 分支及根目录
-3. 访问 `https://<你的用户名>.github.io/PaperEveryday`
 
 ## 📁 项目结构
 
@@ -100,11 +92,7 @@ PaperEveryday/
 | tags | string[] | 标签 |
 | importance | number | 重要性评分 (1-5) |
 
-## 🧪 技术栈
 
-- **前端**：纯 HTML5 + CSS3 + Vanilla JavaScript（零依赖）
-- **数据**：JSON 文件（版本可控）+ localStorage（工作区缓存）
-- **自动更新**：GitHub Actions + Python 脚本
 
 ---
 
