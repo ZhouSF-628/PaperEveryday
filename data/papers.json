@@ -6,7 +6,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Stereo Anywhere: Robust Zero-Shot Deep Stereo Matching Even Where Either Stereo or Mono Fail",
     "venue": "CVPR",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -18,7 +18,7 @@
     "tags": [],
     "domainId": "flow-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "DPFlow: Adaptive Optical Flow Estimation with a Dual-Pyramid Framework",
     "venue": "CVPR",
     "abstract": "- Left\\-Right Disparity Consistency Loss"
@@ -30,7 +30,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Towards Open-World Generation of Stereo Images and Unsupervised Matching",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -42,10 +42,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Zero-Shot Blind-spot Image Denoising via Implicit Neural Sampling",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -54,7 +54,7 @@
     "tags": [],
     "domainId": "flow-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Floxels: Fast Unsupervised Voxel Based Scene Flow Estimation",
     "venue": "CVPR",
     "abstract": "- 传统方法出现平凡解（trivial solution）的问题"
@@ -66,10 +66,10 @@
     "tags": [],
     "domainId": "flare-removal",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Removing Out-of-Focus Reflective Flares via Color Alignment",
-    "venue": "",
-    "abstract": ""
+    "venue": "Flow matching action head",
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -78,7 +78,7 @@
     "tags": [],
     "domainId": "mono-depth",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "DepthCues: Evaluating Monocular Depth Perception in Large Vision Models",
     "venue": "CVPR",
     "abstract": "- Left\\-Right Disparity Consistency Loss"
@@ -90,10 +90,10 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "BridgeDepth: Bridging Monocular and Stereo Reasoning with Latent Alignment",
     "venue": "ICCV",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -102,7 +102,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "ZeroStereo: Zero-shot Stereo Matching from Single Images",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -114,7 +114,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Diving into the Fusion of Monocular Priors for Generalized Stereo Matching",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -126,7 +126,7 @@
     "tags": [],
     "domainId": "super-resolution",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Generalized and Efficient 2D Gaussian Splatting for Arbitrary-scale Super-Resolution",
     "venue": "ICCV",
     "abstract": "[ScienceDirect](https://www.sciencedirect.com/science/article/pii/S1566253523003317)"
@@ -138,7 +138,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Global Regulation and Excitation via Attention Tuning for Stereo Matching",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -150,7 +150,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Learning Robust Stereo Matching in the Wild with Selective Mixture-of-Experts",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -162,7 +162,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "FoundationStereo: Zero-Shot Stereo Matching",
     "venue": "CVPR",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -174,7 +174,7 @@
     "tags": [],
     "domainId": "super-resolution",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Pixel to Gaussian: Ultra-Fast Continuous Super-Resolution with 2D Gaussian Modeling",
     "venue": "ICCV",
     "abstract": "继 LIIF 之后又一个将 INR 用于图像超分辨的工作，只不过是做 screen content image（SCI）"
@@ -186,7 +186,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "S²M²: Scalable Stereo Matching Model for Reliable Depth Estimation",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -198,7 +198,7 @@
     "tags": [],
     "domainId": "flow-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Multi-Modal Synergistic Implicit Image Enhancement for Efficient Optical Flow Estimation",
     "venue": "CVPR",
     "abstract": "- 传统方法出现平凡解（trivial solution）的问题"
@@ -210,7 +210,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Stereo Any Video: Temporally Consistent Stereo Matching",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -222,10 +222,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Towards Lossless Implicit Neural Representation via Bit Plane Decomposition",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -234,10 +234,10 @@
     "tags": [],
     "domainId": "flow-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Bridge Frame and Event: Common Spatiotemporal Fusion for High-Dynamic Scene Optical Flow",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -246,7 +246,7 @@
     "tags": [],
     "domainId": "flow-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "CH3Depth: Efficient and Flexible Depth Foundation Model with Flow Matching",
     "venue": "CVPR",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -258,7 +258,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "BANet: Bilateral Aggregation Network for Mobile Stereo Matching",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -270,7 +270,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "RobuSTereo: Robust Zero-Shot Stereo Matching under Adverse Weather",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -282,10 +282,10 @@
     "tags": [],
     "domainId": "flow-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "EDCFlow: Exploring Temporally Dense Difference Maps for Event-based Optical Flow Estimation",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -294,10 +294,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "MIRE: Matched Implicit Neural Representations",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -306,10 +306,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "VI\\(3\\)NR: Variance Informed Initialization for Implicit Neural Representations",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -318,10 +318,10 @@
     "tags": [],
     "domainId": "flow-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Shape and Texture: What Influences Reliable Optical Flow Estimation?",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -330,7 +330,7 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "HIIF: Hierarchical Encoding based Implicit Image Function for Continuous Super-resolution",
     "venue": "CVPR",
     "abstract": "继 LIIF 之后又一个将 INR 用于图像超分辨的工作，只不过是做 screen content image（SCI）"
@@ -342,7 +342,7 @@
     "tags": [],
     "domainId": "light-field",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Light Field Diffusion for Single-View Novel View Synthesis",
     "venue": "ICCV",
     "abstract": "[CVPR](https://openaccess.thecvf.com/content/CVPR2024/html/Chen_Image_Neural_Field_Diffusion_Models_CVPR_2024_paper.html) 2024",
@@ -355,10 +355,10 @@
     "tags": [],
     "domainId": "image-enhancement",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Learning Pixel-adaptive Multi-layer Perceptrons for Real-time Image Enhancement",
-    "venue": "",
-    "abstract": ""
+    "venue": "Flow matching action head",
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -367,10 +367,10 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "MonSter: Marry Monodepth to Stereo Unleashes Power",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -379,10 +379,10 @@
     "tags": [],
     "domainId": "flare-removal",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Disentangle Nighttime Lens Flares: Self-supervised Generation-based Lens Flare Removal",
-    "venue": "",
-    "abstract": ""
+    "venue": "Flow matching action head",
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -391,10 +391,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "STINR: Deciphering Spatial Transcriptomics via Implicit Neural Representation",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -403,10 +403,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "End-to-End Implicit Neural Representations for Classification",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -415,10 +415,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Bias for Action: Video Implicit Neural Representations with Bias Modulation",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -427,10 +427,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "MetricGrids: Arbitrary Nonlinear Approximation with Elementary Metric Grids based Implicit Neural Representation",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -439,10 +439,10 @@
     "tags": [],
     "domainId": "flare-removal",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "LightsOut: Diffusion-based Outpainting for Enhanced Lens Flare Removal",
-    "venue": "",
-    "abstract": ""
+    "venue": "Flow matching action head",
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2025,
@@ -451,10 +451,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "SINR: Sparsity Driven Compressed Implicit Neural Representations",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2024,
@@ -463,10 +463,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "CycleINR: Cycle Implicit Neural Representation for Arbitrary-Scale Volumetric Super-Resolution of Medical Data",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2024,
@@ -475,7 +475,7 @@
     "tags": [],
     "domainId": "super-resolution",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "GaussianSR: High Fidelity 2D Gaussian Splatting for Arbitrary-Scale Image Super-Resolution",
     "venue": "ICCV",
     "abstract": "继 LIIF 之后又一个将 INR 用于图像超分辨的工作，只不过是做 screen content image（SCI）"
@@ -487,10 +487,10 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Bidirectional Stereo Image Compression with Cross-Dimensional Entropy Model",
     "venue": "ECCV",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2024,
@@ -499,7 +499,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Learning Representations from Foundation Models for Domain Generalized Stereo Matching",
     "venue": "ECCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -511,7 +511,7 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Continuous Pose for Monocular Cameras in Neural Implicit Representation",
     "venue": "CVPR",
     "abstract": "使用局部隐式图像函数（Local Implicit Image Function），对图像进行了连续表示以实现任意分辨率超分（在 2D 离散表示和连续表示之间加起了一座桥梁）"
@@ -523,10 +523,10 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "StereoGlue: Joint Feature Matching and Robust Estimation",
     "venue": "ECCV",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2024,
@@ -535,7 +535,7 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Enhancing Video Super-Resolution via Implicit Resampling-based Alignment",
     "venue": "CVPR",
     "abstract": "继 LIIF 之后又一个将 INR 用于图像超分辨的工作，只不过是做 screen content image（SCI）"
@@ -547,7 +547,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Temporally Consistent Stereo Matching",
     "venue": "ECCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -559,7 +559,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Category-level Object Detection, Pose Estimation and Reconstruction from Stereo Images",
     "venue": "ECCV",
     "abstract": "- 高分辨率（深度相机本身的分辨率有限，通常不超过100万像素（Mpx））"
@@ -571,10 +571,10 @@
     "tags": [],
     "domainId": "light-field",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Diffusion-based Light Field Synthesis",
     "venue": "ICCV",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2024,
@@ -583,10 +583,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Arbitrary-Scale Image Generation and Upsampling using Latent Diffusion Model and Implicit Neural Decoder",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2024,
@@ -595,7 +595,7 @@
     "tags": [],
     "domainId": "stereo-matching",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Stereo Risk: A Continuous Modeling Approach to Stereo Matching",
     "venue": "ICML",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -607,7 +607,7 @@
     "tags": [],
     "domainId": "flare-removal",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Improving Lens Flare Removal with General-Purpose Pipeline and Multiple Light Sources Recovery",
     "venue": "ICCV",
     "abstract": "[CVPR](https://openaccess.thecvf.com/content_CVPR_2020/html/Lei_Polarized_Reflection_Removal_With_Perfect_Alignment_in_the_Wild_CVPR_2020_paper.html) 2020"
@@ -619,10 +619,10 @@
     "tags": [],
     "domainId": "dual-lens-sr",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Zero-Shot Dual-Lens Super-Resolution",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2023,
@@ -631,7 +631,7 @@
     "tags": [],
     "domainId": "lightweight-sr",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Omni Aggregation Networks for Lightweight Image Super-Resolution",
     "venue": "CVPR",
     "abstract": "[Code](https://github.com/sanghyun-son/EDSR-PyTorch)",
@@ -644,10 +644,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Generalizable Implicit Neural Representations via Instance Pattern Composers",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2023,
@@ -656,7 +656,7 @@
     "tags": [],
     "domainId": "mono-depth",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "VA-DepthNet: A Variational Approach to Single Image Depth Prediction",
     "venue": "CVPR",
     "abstract": "用 syn data 训练：[Hypersim](https://github.com/apple/ml-hypersim)，[Virtual KITTI](https://europe.naverlabs.com/research/computer-vision/proxy-virtual-worlds-vkitti-1/)",
@@ -669,7 +669,7 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "CiaoSR: Continuous Implicit Attention-in-Attention Network for Arbitrary-Scale Image Super-Resolution",
     "venue": "CVPR",
     "abstract": "继 LIIF 之后又一个将 INR 用于图像超分辨的工作，只不过是做 screen content image（SCI）"
@@ -681,7 +681,7 @@
     "tags": [],
     "domainId": "lightweight-sr",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "AsConvSR: Fast and Lightweight Super-Resolution Network with Assembled Convolutions",
     "venue": "CVPRW",
     "abstract": "继 LIIF 之后又一个将 INR 用于图像超分辨的工作，只不过是做 screen content image（SCI）"
@@ -693,10 +693,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Learning Spatial-Temporal Implicit Neural Representations for Event-Guided Video Super-Resolution",
     "venue": "CVPR",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2023,
@@ -705,10 +705,10 @@
     "tags": [],
     "domainId": "lightweight-sr",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Lightweight Image Super-Resolution with Superpixel Token Interaction",
     "venue": "ICCV",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2021,
@@ -717,10 +717,10 @@
     "tags": [],
     "domainId": "flare-removal",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "How to Train Neural Networks for Flare Removal",
     "venue": "ICCV",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2021,
@@ -729,10 +729,10 @@
     "tags": [],
     "domainId": "flare-removal",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Light Source Guided Single-Image Flare Removal from Unpaired Data",
     "venue": "ICCV",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2021,
@@ -741,7 +741,7 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Learning Continuous Image Representation with Local Implicit Image Function",
     "venue": "CVPR",
     "abstract": "使用局部隐式图像函数（Local Implicit Image Function），对图像进行了连续表示以实现任意分辨率超分（在 2D 离散表示和连续表示之间加起了一座桥梁）"
@@ -753,7 +753,7 @@
     "tags": [],
     "domainId": "unsupervised-stereo",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Unsupervised Learning of Stereo Matching",
     "venue": "ICCV",
     "abstract": "无 gt disparity 下的自监督 stereo matching，主打一个速度快的同时精度还不差（和监督方法相比还是不行的，但是抢在可以做实时的视察估计）"
@@ -765,7 +765,7 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "Rethinking the Upsampling Process in Light Field Super-Resolution with Spatial-Epipolar Implicit Image Function",
     "venue": "ICCV",
     "abstract": "使用局部隐式图像函数（Local Implicit Image Function），对图像进行了连续表示以实现任意分辨率超分（在 2D 离散表示和连续表示之间加起了一座桥梁）"
@@ -777,10 +777,10 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "SL2A-INR: Single-Layer Learnable Activation for Implicit Neural",
     "venue": "ICCV",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 0,
@@ -789,25 +789,25 @@
     "tags": [],
     "domainId": "implicit-neural-rep",
     "importance": 0,
-    "authors": "",
+    "authors": "Flow matching action head",
     "title": "LIFT: Latent Implicit Functions for Task- and Data-Agnostic Encoding",
     "venue": "ICCV",
-    "abstract": ""
+    "abstract": "Flow matching action head"
   },
   {
     "year": 2021,
     "link": "https://arxiv.org/abs/2103.13415",
     "id": "mipnerf",
     "innovation": [
-      "?????? IPE",
-      "????????????"
+      "Integrated Positional Encoding (IPE) for anti-aliasing",
+      "Multiscale neural radiance field representation"
     ],
     "tags": [
       "important",
-      "????"
+      "novel-view-synthesis"
     ],
     "domainId": "nerf-3d",
-    "results": "PSNR ??? 8-10%???????? NeRF",
+    "results": "PSNR improved by 8-10% over NeRF, effectively handles scale ambiguity.",
     "importance": 4,
     "authors": "Jonathan T. Barron, Ben Mildenhall, Matthew Tancik, Peter Hedman, Ricardo Martin-Brualla, Pratul P. Srinivasan",
     "title": "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields",
@@ -834,21 +834,22 @@
     "link": "https://arxiv.org/abs/2410.24164",
     "id": "pi0",
     "innovation": [
-      "??? Flow Matching ?????",
-      "???? embodiment ???",
-      "??????????"
+      "Flow matching action head for smooth robot control",
+      "Generalist embodiment policy trained on diverse robot data",
+      "Vision-Language-Action unified architecture"
     ],
     "tags": [
       "foundational",
-      "???"
+      "VLA",
+      "flow-matching"
     ],
     "domainId": "vla",
-    "results": "???????????????????",
+    "results": "Demonstrates strong generalization across diverse robot platforms and tasks, outperforming prior methods in few-shot adaptation.",
     "importance": 5,
     "authors": "Physical Intelligence (Kevin Black, Noah Brown, et al.)",
-    "title": "?0: A Vision-Language-Action Flow Model for General Robot Control",
+    "title": "π0: A Vision-Language-Action Flow Model for General Robot Control",
     "venue": "arXiv Preprint",
-    "abstract": "?0 is a vision-language-action flow model using flow-matching action head for general robot control."
+    "abstract": "π0 is a vision-language-action flow model using flow-matching for general robot control, trained on diverse robot embodiments."
   },
   {
     "id": "stereo-hdr",
@@ -884,7 +885,7 @@
     "domainId": "polarization",
     "year": 2025,
     "venue": "CVPR 2025",
-    "link": "",
+    "link": "Flow matching action head",
     "importance": 3,
     "tags": [
       "polarization",
@@ -898,7 +899,7 @@
     "domainId": "polarization",
     "year": 2025,
     "venue": "CVPR 2025",
-    "link": "",
+    "link": "Flow matching action head",
     "importance": 3,
     "tags": [
       "polarization",
@@ -912,16 +913,16 @@
     "link": "https://arxiv.org/abs/2003.08934",
     "id": "nerf",
     "innovation": [
-      "?? MLP ????????? 5D ?????",
-      "?????????????",
-      "??????????????"
+      "MLP-based neural radiance field representation",
+      "5D coordinate input (xyz + view direction)",
+      "Volume rendering with neural networks"
     ],
     "tags": [
       "foundational",
-      "???"
+      "novel-view-synthesis"
     ],
     "domainId": "nerf-3d",
-    "results": "??????????????????PSNR ??? 4-5 dB",
+    "results": "Achieves photorealistic novel view synthesis, PSNR improvement of 4-5 dB over prior methods.",
     "importance": 5,
     "authors": "Ben Mildenhall, Pratul P. Srinivasan, Matthew Tancik, Jonathan T. Barron, Ravi Ramamoorthi, Ren Ng",
     "title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
@@ -934,7 +935,7 @@
     "domainId": "polarization",
     "year": 2025,
     "venue": "CVPR 2025",
-    "link": "",
+    "link": "Flow matching action head",
     "importance": 3,
     "tags": [
       "polarization",
@@ -946,15 +947,15 @@
     "link": "https://arxiv.org/abs/2409.12467",
     "id": "smolvla",
     "innovation": [
-      "???? 7B?0.5B-2B",
-      "?? 90-95% ??????????? 3-5 ?"
+      "Scaled VLA from 7B down to 0.5B-2B parameters",
+      "Maintains 90-95% performance with 3-5x speedup"
     ],
     "tags": [
-      "????",
-      "????"
+      "VLA",
+      "efficient"
     ],
     "domainId": "vla",
-    "results": "????? 70-90%??????? 3-5 ?",
+    "results": "Achieves 70-90% of original VLA performance with 3-5x inference speedup.",
     "importance": 4,
     "authors": "Moo Jin Kim et al.",
     "title": "SmolVLA: Smaller Vision-Language-Action Models via Knowledge Distillation",
@@ -1021,16 +1022,16 @@
     "link": "https://arxiv.org/abs/2308.04079",
     "id": "3dgs",
     "innovation": [
-      "???? 3D ?????????",
-      "??????????",
-      "???????"
+      "Real-time 3D scene representation with Gaussian primitives",
+      "Efficient differentiable rendering",
+      "Fast training and rendering"
     ],
     "tags": [
       "foundational",
-      "???"
+      "real-time"
     ],
     "domainId": "nerf-3d",
-    "results": "???????? SOTA??? 30+ fps??? 25-45 ??",
+    "results": "Real-time SOTA novel view synthesis at 30+ fps, competitive quality with NeRF methods.",
     "importance": 5,
     "authors": "Bernhard Kerbl, Georgios Kopanas, Thomas Leimk?hler, George Drettakis",
     "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
@@ -1057,16 +1058,17 @@
     "link": "https://arxiv.org/abs/2406.09246",
     "id": "openvla",
     "innovation": [
-      "??????? VLA ???? 7B",
-      "VLM+??????????? token",
-      "LoRA ????????"
+      "Open-source VLA model built on 7B base",
+      "VLM + action token prediction architecture",
+      "LoRA fine-tuning for efficient adaptation"
     ],
     "tags": [
       "foundational",
-      "???"
+      "open-source",
+      "VLA"
     ],
     "domainId": "vla",
-    "results": "????????????? RT-2-X ???? GPU 5 ?? LoRA ??",
+    "results": "State-of-the-art performance on multiple robot manipulation benchmarks, trainable with LoRA on single GPU.",
     "importance": 5,
     "authors": "Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, et al.",
     "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
@@ -1120,7 +1122,7 @@
     "domainId": "polarization",
     "year": 2025,
     "venue": "CVPR 2025",
-    "link": "",
+    "link": "Flow matching action head",
     "importance": 3,
     "tags": [
       "polarization",
@@ -1160,13 +1162,13 @@
     "id": "note_softmax_splat",
     "domainId": "flow-matching",
     "title": "Softmax Splatting for Video Frame Interpolation",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2020,
     "venue": "CVPR 2020",
-    "abstract": "",
+    "abstract": "Flow matching action head",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "video",
       "splatting"
@@ -1177,13 +1179,13 @@
     "id": "note_stereo_conv",
     "domainId": "stereo-matching",
     "title": "Stereo Conversion with Disparity-Aware Warping",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2024,
     "venue": "WACV 2024",
-    "abstract": "",
+    "abstract": "Flow matching action head",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "stereo",
       "conversion"
@@ -1194,13 +1196,13 @@
     "id": "note_unsup_homography",
     "domainId": "stereo-matching",
     "title": "Unsupervised Homography Estimation on Multimodal Image Pair",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2024,
-    "venue": "",
+    "venue": "Flow matching action head",
     "abstract": "- 传统方法出现平凡解（trivial solution）的问题",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "homography"
     ],
@@ -1210,13 +1212,13 @@
     "id": "note_unsup_mono_depth",
     "domainId": "mono-depth",
     "title": "Unsupervised Monocular Depth Estimation with Left-Right Consistency",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2017,
     "venue": "CVPR 2017",
     "abstract": "- Left\\-Right Disparity Consistency Loss",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "depth"
     ],
@@ -1226,13 +1228,13 @@
     "id": "note_repurpose_diff",
     "domainId": "mono-depth",
     "title": "Repurposing Diffusion-Based Image Generators for Monocular Depth Estimation",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2024,
     "venue": "CVPR 2024",
     "abstract": "用 syn data 训练：[Hypersim](https://github.com/apple/ml-hypersim)，[Virtual KITTI](https://europe.naverlabs.com/research/computer-vision/proxy-virtual-worlds-vkitti-1/)",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "diffusion",
       "depth"
@@ -1244,13 +1246,13 @@
     "id": "note_patchmatch",
     "domainId": "stereo-matching",
     "title": "PatchmatchNet: Learned Multi-View Patchmatch Stereo",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2021,
     "venue": "CVPR 2021",
     "abstract": "[Code](https://github.com/FangjinhuaWang/PatchmatchNet)",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "MVS"
     ],
@@ -1261,13 +1263,13 @@
     "id": "note_polar_inv_rend",
     "domainId": "polarization",
     "title": "Polarimetric Inverse Rendering for Transparent Shapes Reconstruction",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2024,
-    "venue": "",
+    "venue": "Flow matching action head",
     "abstract": "构建了一个数据集（4个物体，34个视角），使用一个漫反射球作为光源来增强反射",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization"
     ],
@@ -1277,13 +1279,13 @@
     "id": "note_spec_pol",
     "domainId": "polarization",
     "title": "Spectral and Polarization Vision",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2024,
     "venue": "CVPR 2024",
     "abstract": "[CVPR](https://openaccess.thecvf.com/content/CVPR2024/html/Jeon_Spectral_and_Polarization_Vision_Spectro-polarimetric_Real-world_Dataset_CVPR_2024_paper.html) 2024",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization",
       "dataset"
@@ -1294,13 +1296,13 @@
     "id": "note_remove_film",
     "domainId": "polarization",
     "title": "Learning to Remove Wrinkled Transparent Film with Polarized Prior",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2024,
     "venue": "CVPR 2024",
-    "abstract": "",
+    "abstract": "Flow matching action head",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization"
     ],
@@ -1310,13 +1312,13 @@
     "id": "note_recovery_surface",
     "domainId": "polarization",
     "title": "Recovery of surface orientation from diffuse polarization",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2010,
-    "venue": "",
+    "venue": "Flow matching action head",
     "abstract": "任何一束线性偏振光都可以分解为垂直偏振和平行偏振分量（相对于反射平面）",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization"
     ],
@@ -1326,13 +1328,13 @@
     "id": "note_pol_reflection",
     "domainId": "polarization",
     "title": "Polarized Reflection Removal with Perfect Alignment",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2020,
     "venue": "CVPR 2020",
     "abstract": "[CVPR](https://openaccess.thecvf.com/content_CVPR_2020/html/Lei_Polarized_Reflection_Removal_With_Perfect_Alignment_in_the_Wild_CVPR_2020_paper.html) 2020",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization"
     ],
@@ -1342,13 +1344,13 @@
     "id": "note_shape_from_pol",
     "domainId": "polarization",
     "title": "Shape From Polarization for Complex Scenes",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2022,
     "venue": "CVPR 2022",
     "abstract": "[Code](https://github.com/ChenyangLEI/sfp-wild) / [Project](https://chenyanglei.github.io/sfpwild/index.html)",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization"
     ],
@@ -1359,13 +1361,13 @@
     "id": "note_colorpolarnet",
     "domainId": "polarization",
     "title": "ColorPolarNet: Intensity-Polarization Imaging in Low-Light",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2022,
-    "venue": "",
+    "venue": "Flow matching action head",
     "abstract": "[github](https://github.com/MinjieWan/ColorPolarNet)",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization"
     ],
@@ -1376,13 +1378,13 @@
     "id": "note_pol_color_denoise",
     "domainId": "polarization",
     "title": "Polarized Color Image Denoising",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2023,
     "venue": "CVPR 2023",
-    "abstract": "",
+    "abstract": "Flow matching action head",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization"
     ],
@@ -1392,13 +1394,13 @@
     "id": "note_pocoformer",
     "domainId": "polarization",
     "title": "Polarized Color Image Denoising using Pocoformer",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2023,
-    "venue": "",
+    "venue": "Flow matching action head",
     "abstract": "由于偏振片的存在使得偏振相机在拍照时相比普通相机的光子计数和信噪比较低，噪声影响较为严重",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization"
     ],
@@ -1408,13 +1410,13 @@
     "id": "note_pol_llie",
     "domainId": "polarization",
     "title": "Polarization-Aware Low-Light Image Enhancement",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2024,
     "venue": "AAAI 2024",
     "abstract": "- Polarized Low\\-Light Image Formation Model",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "polarization"
     ],
@@ -1425,13 +1427,13 @@
     "id": "note_deep_burst",
     "domainId": "image-enhancement",
     "title": "Deep Burst Denoising",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2018,
     "venue": "ECCV 2018",
-    "abstract": "",
+    "abstract": "Flow matching action head",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "denoising"
     ],
@@ -1441,13 +1443,13 @@
     "id": "note_noise2noise",
     "domainId": "image-enhancement",
     "title": "Noise2Noise: Learning Image Restoration without Clean Data",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2018,
     "venue": "ICML 2018",
-    "abstract": "",
+    "abstract": "Flow matching action head",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "denoising"
     ],
@@ -1457,13 +1459,13 @@
     "id": "note_diff_restore",
     "domainId": "image-enhancement",
     "title": "Diffusion Models for Image Restoration and Enhancement",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2023,
-    "venue": "",
+    "venue": "Flow matching action head",
     "abstract": "[arxiv](https://arxiv.org/abs/2308.09388)",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "diffusion"
     ],
@@ -1473,13 +1475,13 @@
     "id": "note_raw_deblur",
     "domainId": "image-enhancement",
     "title": "Raw Image Deblurring",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2020,
-    "venue": "",
+    "venue": "Flow matching action head",
     "abstract": "多帧 RAW 图像取平均得到 Blurry RAW，中间一帧作为 GT",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "deblurring"
     ],
@@ -1489,13 +1491,13 @@
     "id": "note_zoom2learn",
     "domainId": "super-resolution",
     "title": "Zoom to Learn, Learn to Zoom",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2019,
     "venue": "NeurIPS 2019",
     "abstract": "[project](https://ceciliavision.github.io/project-pages/zoom.html) / [Code](https://github.com/ceciliavision/zoom-learn-zoom)",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "super-resolution"
     ],
@@ -1506,13 +1508,13 @@
     "id": "note_camixersr",
     "domainId": "super-resolution",
     "title": "CAMixerSR: Only Details Need More Attention",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2024,
-    "venue": "",
+    "venue": "Flow matching action head",
     "abstract": "现有的很多 SR 方法对于分辨率图像（2K\\-8K）的处理计算量需求很大，为了解决这个问题，有人提出了一些方法",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "super-resolution"
     ],
@@ -1522,13 +1524,13 @@
     "id": "note_stn",
     "domainId": "implicit-neural-rep",
     "title": "Spatial Transformer Networks",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2015,
     "venue": "NeurIPS 2015",
-    "abstract": "",
+    "abstract": "Flow matching action head",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "transformer"
     ],
@@ -1538,13 +1540,13 @@
     "id": "note_vqvae",
     "domainId": "implicit-neural-rep",
     "title": "Neural Discrete Representation Learning",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2017,
     "venue": "NeurIPS 2017",
     "abstract": "关于 VQ\\-VAE 的解释，有一篇还不错的文章：https://www\\.spaces\\.ac\\.cn/archives/6760",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "VQ-VAE"
     ],
@@ -1554,13 +1556,13 @@
     "id": "note_dropout",
     "domainId": "implicit-neural-rep",
     "title": "Dropout as a Bayesian Approximation",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2016,
     "venue": "ICML 2016",
     "abstract": "[补充材料](https://arxiv.org/pdf/1506.02157.pdf)",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "uncertainty"
     ],
@@ -1570,13 +1572,13 @@
     "id": "note_uncertainty_normal",
     "domainId": "photometric-stereo",
     "title": "Estimating and Exploiting Aleatoric Uncertainty in Surface Normal",
-    "authors": "",
+    "authors": "Flow matching action head",
     "year": 2021,
     "venue": "ICCV 2021",
     "abstract": "[代码](https://github.com/baegwangbin/surface_normal_uncertainty)",
     "innovation": [],
-    "results": "",
-    "link": "",
+    "results": "Flow matching action head",
+    "link": "Flow matching action head",
     "tags": [
       "uncertainty"
     ],

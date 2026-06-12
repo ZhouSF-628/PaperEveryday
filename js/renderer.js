@@ -1,4 +1,4 @@
-﻿// v1781255057949
+// v1781255057949
 ﻿/* ============================================================
    PaperEveryday - Renderer v2
    DOM rendering: sidebar, home, domain view, cards, modal, notes
@@ -223,16 +223,6 @@ const Renderer = {
       abstractHtml = '<div class="card-abstract">' + Renderer._escapeHtml(abs) + '</div>';
     }
 
-    // Innovation preview (first 2)
-    var innovationHtml = '';
-    if (paper.innovation && paper.innovation.length > 0) {
-      var innoList = [];
-      for (var k = 0; k < Math.min(2, paper.innovation.length); k++) {
-        innoList.push('<span class="innovation-dot">✦ ' + Renderer._escapeHtml(paper.innovation[k].substring(0, 30)) + '</span>');
-      }
-      if (innoList.length > 0) innovationHtml = '<div class="card-innovation-preview">' + innoList.join('') + '</div>';
-    }
-
     card.innerHTML = 
       '<div class="card-header">' +
         '<div class="card-title">' + Renderer._escapeHtml(paper.title) + '</div>' +
@@ -242,7 +232,6 @@ const Renderer = {
       venueHtml +
       (tagsHtml ? '<div class="card-tags">' + tagsHtml + '</div>' : '') +
       abstractHtml +
-      innovationHtml +
       '<div class="card-actions">' +
         
         '<div class="card-links">' +
@@ -271,9 +260,13 @@ const Renderer = {
       `<span class="tag ${t === 'foundational' || t === '代表作' ? 'tag-primary' : ''}">${t}</span>`
     ).join('');
 
-    let tabsHtml = `<div class="tab active" data-tab="abstract">摘要</div>
-      <div class="tab" data-tab="innovation">💡 创新点</div>
-      <div class="tab" data-tab="results">📊 结果对比</div>`;
+    let tabsHtml = `<div class="tab active" data-tab="abstract">摘要</div>`;
+    if (paper.innovation && paper.innovation.length > 0) {
+      tabsHtml += `<div class="tab" data-tab="innovation">💡 创新点</div>`;
+    }
+    if (paper.results) {
+      tabsHtml += `<div class="tab" data-tab="results">📊 结果对比</div>`;
+    }
     if (hasNotes.length > 0) {
       tabsHtml += `<div class="tab" data-tab="notes">📝 我的笔记</div>`;
     }
@@ -309,11 +302,7 @@ const Renderer = {
             <div class="field-label">链接</div>
             <div class="field-value"><a href="${paper.link}" target="_blank">${paper.link}</a></div>
           </div>` : ''}
-          <div class="field">
-            <div class="field-label">重要性</div>
-            <div class="field-value card-stars">${starsHtml}</div>
-          </div>
-          ${tagsHtml ? `<div class="field">
+${tagsHtml ? `<div class="field">
             <div class="field-label">标签</div>
             <div class="field-value card-tags">${tagsHtml}</div>
           </div>` : ''}
@@ -330,7 +319,7 @@ const Renderer = {
             }
           </div>
           <div class="tab-content" id="tab-results">
-            <div class="results-block">${this._escapeHtml(paper.results || '暂无结果对比')}</div>
+            <div class="results-block">${this._escapeHtml(paper.results)}</div>
           </div>
           ${notesHtml}
 
@@ -593,11 +582,7 @@ const Renderer = {
                 <label for="f-arxiv">ArXiv ID</label>
                 <input type="text" id="f-arxiv" value="${this._escapeHtml(p.arxivId || '')}" placeholder="e.g. 2406.09246">
               </div>
-              <div class="form-group">
-                <label for="f-importance">重要性 (1-5)</label>
-                <input type="number" id="f-importance" value="${p.importance || 3}" min="1" max="5">
-              </div>
-            </div>
+  </div>
             <div class="form-group">
               <label for="f-link">论文链接</label>
               <input type="url" id="f-link" value="${this._escapeHtml(p.link || '')}" placeholder="https://arxiv.org/abs/...">
@@ -637,7 +622,7 @@ const Renderer = {
         venue: document.getElementById('f-venue').value.trim(),
         domainId: document.getElementById('f-domain').value,
         arxivId: document.getElementById('f-arxiv').value.trim(),
-        importance: parseInt(document.getElementById('f-importance').value) || 3,
+        importance: 3,
         link: document.getElementById('f-link').value.trim(),
         tags: document.getElementById('f-tags').value.split(',').map(t => t.trim()).filter(Boolean),
         abstract: document.getElementById('f-abstract').value.trim(),
