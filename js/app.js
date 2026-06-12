@@ -3,7 +3,7 @@
    ============================================================ */
 
 const App = {
-  _currentView: 'home',  // 'home', 'domain-{id}', 'latest', 'conferences'
+  _currentView: 'home',
   _searchTerm: '',
   _sortBy: 'year',
 
@@ -20,21 +20,12 @@ const App = {
       this._searchTerm = e.target.value.toLowerCase();
       this.renderCurrentView();
     });
-
     document.getElementById('sort-select')?.addEventListener('change', (e) => {
       this._sortBy = e.target.value;
       this.renderCurrentView();
     });
-
-    document.getElementById('btn-add')?.addEventListener('click', () => {
-      Renderer.showFormModal(null);
-    });
-
-    document.getElementById('btn-export')?.addEventListener('click', () => {
-      DataManager.exportData();
-      App.showToast('数据已导出', 'success');
-    });
-
+    document.getElementById('btn-add')?.addEventListener('click', () => { Renderer.showFormModal(null); });
+    document.getElementById('btn-export')?.addEventListener('click', () => { DataManager.exportData(); App.showToast('数据已导出', 'success'); });
     document.getElementById('btn-import')?.addEventListener('click', () => {
       const input = document.createElement('input');
       input.type = 'file';
@@ -44,20 +35,16 @@ const App = {
         if (!file) return;
         try {
           const count = await DataManager.importData(file);
-          App.showToast(`成功导入 ${count} 篇论文`, 'success');
+          App.showToast('成功导入 ' + count + ' 篇论文', 'success');
           this.renderCurrentView();
-        } catch (err) {
-          App.showToast(err.message, 'error');
-        }
+        } catch (err) { App.showToast(err.message, 'error'); }
       };
       input.click();
     });
-
     document.getElementById('menu-toggle')?.addEventListener('click', () => {
       document.getElementById('sidebar').classList.toggle('open');
       document.getElementById('sidebar-overlay').classList.toggle('show');
     });
-
     document.getElementById('sidebar-overlay')?.addEventListener('click', () => {
       document.getElementById('sidebar').classList.remove('open');
       document.getElementById('sidebar-overlay').classList.remove('show');
@@ -94,7 +81,6 @@ const App = {
   renderCurrentView() {
     const view = this._currentView;
     Renderer.renderSidebar(DataManager.getDomains(), view);
-
     if (view === 'home') {
       Renderer.renderHome();
     } else if (view === 'conferences') {
@@ -108,8 +94,6 @@ const App = {
 
   _renderDomainView(domainId) {
     let papers = DataManager.getDomainPapers(domainId);
-
-    // Search
     if (this._searchTerm) {
       const t = this._searchTerm;
       papers = papers.filter(p => {
@@ -118,15 +102,12 @@ const App = {
                (p.abstract || '').toLowerCase().includes(t);
       });
     }
-
-    // Sort
     papers.sort((a, b) => {
       if (this._sortBy === 'importance') return (b.importance || 0) - (a.importance || 0);
       if (this._sortBy === 'year') return (b.year || 0) - (a.year || 0);
       if (this._sortBy === 'title') return (a.title || '').localeCompare(b.title || '');
       return 0;
     });
-
     Renderer.renderDomainPapers(domainId, papers, this._searchTerm, this._sortBy);
   },
 
@@ -193,11 +174,10 @@ const App = {
         }
         existingMap.set(p.id, p);
       });
-
       DataManager.getLatest().papers = Array.from(existingMap.values());
       DataManager.getLatest().fetchedAt = new Date().toISOString();
       try { localStorage.setItem('papereveryday_latest', JSON.stringify(DataManager.getLatest())); } catch {}
-      App.showToast(`获取到 ${papers.length} 篇最新论文`, 'success');
+      App.showToast('获取到 ' + papers.length + ' 篇最新论文', 'success');
       this._renderLatestView();
     } catch (e) {
       console.error(e);
@@ -205,20 +185,82 @@ const App = {
     }
   },
 
+  /* ---------- ArXiv Search ---------- */
+  async searchArxiv(query) {
+    const resultsDiv = document.getElementById('arxiv-search-results');
+    if (!resultsDiv) return;
+    resultsDiv.innerHTML = '<p style="color:var(--color-text-muted);padding:12px 0;">⏳ 正在搜索...</p>';
+    try {
+      const papers = await ArxivFetcher.fetchByKeywords([query], 10);
+      if (papers.length === 0) {
+        resultsDiv.innerHTML = '<p style="color:var(--color-text-muted);padding:12px 0;">未找到相关论文</p>';
+        return;
+      }
+      var html = '<div style="margin-top:8px;"><p style="font-size:0.82rem;color:var(--color-text-muted);margin-bottom:8px;">找到 ' + papers.length + ' 篇相关论文</p>';
+      papers.forEach(function(p) {
+        var safeTitle = (p.title || '').replace(/[&<>"`]/g, function(c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','`':'&#96;' }[c]; });
+        html += '<div class="arxiv-result-item">';
+        html += '<div class="arxiv-result-title">' + safeTitle + '</div>';
+        html += '<div class="arxiv-result-meta">' + (p.authors || '') + (p.year ? ' · ' + p.year : '') + '</div>';
+        html += '<div class="arxiv-result-actions">';
+        if (p.link) html += '<a href="' + p.link + '" target="_blank" class="btn btn-sm">📄 论文</a>';
+        html += '<button class="btn btn-sm btn-primary arxiv-add-btn" data-arxiv-id="' + p.id + '">📥 纳入管理</button>';
+        html += '</div></div>';
+      });
+      html += '</div>';
+      resultsDiv.innerHTML = html;
+      resultsDiv.querySelectorAll('.arxiv-add-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var id = btn.getAttribute('data-arxiv-id');
+          var latest = DataManager.getLatest();
+          if (!latest.papers) latest.papers = [];
+          if (!latest.papers.find(function(x) { return x.id === id; })) {
+            var item = btn.closest('.arxiv-result-item');
+            var titleEl = item.querySelector('.arxiv-result-title');
+            var linkEl = item.querySelector('a');
+            latest.papers.push({
+              id: id,
+              title: titleEl ? titleEl.textContent : '',
+              authors: '',
+              abstract: '',
+              year: '',
+              link: linkEl ? linkEl.href : '',
+              tags: ['arxiv'],
+              _bookmarked: false,
+              _source: 'arxiv'
+            });
+          }
+          var result = DataManager.addFromLatest(id);
+          if (result) {
+            App.showToast('已纳入管理', 'success');
+            resultsDiv.innerHTML = '';
+            document.getElementById('arxiv-search-input').value = '';
+          } else {
+            App.showToast('操作失败', 'error');
+          }
+        });
+      });
+    } catch (e) {
+      console.error(e);
+      resultsDiv.innerHTML = '<p style="color:var(--color-danger);padding:12px 0;">❌ 搜索失败，请检查网络或稍后重试</p>';
+    }
+  },
+
   /* ---------- Toast ---------- */
-  showToast(message, type = '') {
-    const existing = document.querySelector('.toast');
+  showToast(message, type) {
+    if (!type) type = '';
+    var existing = document.querySelector('.toast');
     if (existing) existing.remove();
-    const toast = document.createElement('div');
-    toast.className = `toast ${type ? 'toast-' + type : ''}`;
+    var toast = document.createElement('div');
+    toast.className = 'toast' + (type ? ' toast-' + type : '');
     toast.textContent = message;
     document.body.appendChild(toast);
-    setTimeout(() => {
+    setTimeout(function() {
       toast.style.opacity = '0';
       toast.style.transition = 'opacity 0.3s ease';
-      setTimeout(() => toast.remove(), 300);
+      setTimeout(function() { toast.remove(); }, 300);
     }, 2500);
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => App.init());
+document.addEventListener('DOMContentLoaded', function() { App.init(); });

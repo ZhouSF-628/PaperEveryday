@@ -92,9 +92,9 @@ const DataManager = {
     return this._data.papers.filter(p => p.domainId === domainId);
   },
 
-  getPaper(id) { return this._data.papers.find(p => p.id === id); },
-  getLatest() { return this._data.latest; },
+  getPaper(id) { return this._data.papers.find(p => p.id === id); },  getLatest() { return this._data.latest; },
   getConferences() { return this._data.conferences; },
+  getDomainPapers(domainId) { return this.getPapers(domainId); },
   getNotes() { return this._data.notes; },
 
   /** Get notes for a specific paper by matching title */
@@ -235,3 +235,7 @@ const DataManager = {
     });
   }
 };
+
+
+
+

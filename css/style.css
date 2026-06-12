@@ -915,3 +915,207 @@ a:hover { text-decoration: underline; }
   max-width: 400px;
   word-wrap: break-word;
 }
+
+/* --- Improved Note & Math Styles --- */
+.note-content p {
+  margin-bottom: 8px;
+}
+.note-content ul {
+  margin: 8px 0;
+  padding-left: 0;
+  list-style: none;
+}
+.note-content li {
+  margin: 4px 0 4px 18px;
+  padding-left: 4px;
+  position: relative;
+}
+.note-content li::before {
+  content: "•";
+  color: var(--color-primary);
+  position: absolute;
+  left: -14px;
+}
+.note-content li ul li::before {
+  content: "◦";
+}
+.note-content blockquote {
+  border-left: 3px solid var(--color-primary);
+  padding: 8px 14px;
+  margin: 10px 0;
+  background: var(--color-bg);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.note-content blockquote p {
+  margin-bottom: 4px;
+}
+.note-content strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+.note-content code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: #f1f5f9;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #e11d48;
+}
+.note-content pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  margin: 10px 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.note-content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+.math-inline {
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+.math-block {
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin: 10px 0;
+  font-size: 0.85rem;
+  text-align: center;
+  overflow-x: auto;
+}
+
+/* --- ArXiv Search --- */
+.arxiv-search-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 4px;
+}
+.arxiv-search-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.arxiv-search-row {
+  display: flex;
+  gap: 8px;
+}
+.arxiv-search-row input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: var(--transition);
+}
+.arxiv-search-row input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+#arxiv-search-results {
+  margin-top: 12px;
+}
+.arxiv-result-item {
+  padding: 12px 14px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  transition: var(--transition);
+}
+.arxiv-result-item:hover {
+  background: var(--color-bg);
+}
+.arxiv-result-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.arxiv-result-meta {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+.arxiv-result-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* --- Enhanced Paper Cards --- */
+.paper-card-enhanced {
+  padding: 20px 22px;
+}
+.paper-card-enhanced .card-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+.paper-card-enhanced .card-authors {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+.paper-card-enhanced .card-venue {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+.paper-card-enhanced .card-abstract {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.paper-card-enhanced .card-innovation-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.paper-card-enhanced .innovation-dot {
+  font-size: 0.72rem;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+.btn-note {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary-bg) !important;
+  background: var(--color-primary-light) !important;
+}
+.btn-note:hover {
+  background: var(--color-primary-bg) !important;
+}

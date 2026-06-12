@@ -1,3 +1,4 @@
+﻿// v1781255057949
 ﻿/* ============================================================
    PaperEveryday - Renderer v2
    DOM rendering: sidebar, home, domain view, cards, modal, notes
@@ -70,26 +71,67 @@ const Renderer = {
   renderHome() {
     const container = document.getElementById('papers-container');
     const title = document.getElementById('main-title');
+    const toolbar = document.getElementById('toolbar');
+    toolbar.style.display = 'none';
     title.textContent = '🏠 领域总览';
-    document.getElementById('toolbar').style.display = 'none';
+    container.innerHTML = '';
 
+    // ArXiv Search Section
+    const searchSection = document.createElement('div');
+    searchSection.className = 'arxiv-search-section';
+    searchSection.innerHTML = `
+      <div class="arxiv-search-box">
+        <div class="arxiv-search-label">🔍 ArXiv 论文搜索</div>
+        <div class="arxiv-search-row">
+          <input type="text" id="arxiv-search-input" placeholder="输入关键词搜索 ArXiv（如: 3D Gaussian Splatting）" />
+          <button class="btn btn-primary" id="arxiv-search-btn">搜索</button>
+        </div>
+        <div id="arxiv-search-results"></div>
+      </div>
+    `;
+    container.appendChild(searchSection);
+
+    // ArXiv search event
+    document.getElementById('arxiv-search-btn').addEventListener('click', () => {
+      const query = document.getElementById('arxiv-search-input').value.trim();
+      if (!query) return;
+      App.searchArxiv(query);
+    });
+    document.getElementById('arxiv-search-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('arxiv-search-btn').click();
+      }
+    });
+
+    // Separator
+    const sep = document.createElement('hr');
+    sep.style.cssText = 'border:none;border-top:1px solid var(--color-border);margin:24px 0;';
+    container.appendChild(sep);
+
+    // Domain intro
+    const intro = document.createElement('div');
+    intro.className = 'home-intro';
+    intro.innerHTML = '<p style="color:var(--color-text-muted);margin-bottom:20px;font-size:0.9rem;">📂 选择领域查看论文详情</p>';
+    container.appendChild(intro);
+
+    const grid = document.createElement('div');
+    grid.className = 'domain-grid';
     const domains = DataManager.getDomains();
-
-    let html = `<div class="home-intro">
-      <p style="color:var(--color-text-muted);margin-bottom:24px;">选择领域查看论文详情，或从 ArXiv 获取最新论文</p>
-    </div>
-    <div class="domain-grid">`;
 
     domains.forEach(d => {
       const count = DataManager.getPaperCount(d.id);
       const latest = DataManager.getLatestPapersPerDomain(d.id, 3);
+      const card = document.createElement('div');
+      card.className = 'domain-card';
+
       let latestHtml = '';
       if (latest.length > 0) {
         latestHtml = '<div class="domain-latest-papers">';
         latest.forEach(p => {
           const hasNotes = DataManager.getNotesForPaper(p.title).length > 0;
-          latestHtml += `<div class="domain-latest-paper" onclick="event.stopPropagation(); App.showPaperDetail('${p.id}')">
-            📄 ${p.title.substring(0, 60)}${p.title.length > 60 ? '...' : ''}
+          const shortTitle = p.title.length > 60 ? p.title.substring(0,60)+'...' : p.title;
+          latestHtml += `<div class="domain-latest-paper" data-paper-id="${p.id}">
+            📄 ${this._escapeHtml(shortTitle)}
             ${hasNotes ? '<span class="note-badge">📝</span>' : ''}
             <span class="domain-latest-year">${p.year || ''}</span>
           </div>`;
@@ -97,99 +139,122 @@ const Renderer = {
         latestHtml += '</div>';
       }
 
-      html += `<div class="domain-card" onclick="App.switchDomain('${d.id}')">
+      card.innerHTML = `
         <div class="domain-card-header">
           <span class="domain-icon">${d.icon}</span>
-          <span class="domain-name">${d.name}</span>
+          <span class="domain-name">${this._escapeHtml(d.name)}</span>
           <span class="domain-count">${count} 篇</span>
         </div>
         ${latestHtml}
         <div class="domain-card-footer">点击查看全部 →</div>
-      </div>`;
+      `;
+
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.domain-latest-paper')) return;
+        App.switchDomain(d.id);
+      });
+      card.querySelectorAll('.domain-latest-paper').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          App.showPaperDetail(el.dataset.paperId);
+        });
+      });
+      grid.appendChild(card);
     });
 
-    html += '</div>';
-    container.innerHTML = html;
-  },
-
-  /* ---------- Domain Paper View ---------- */
-  renderDomainPapers(domainId, papers, searchTerm, sortBy) {
+    container.appendChild(grid);
+  },/* ---------- Domain Paper View ---------- */
+  renderDomainPapers(domainId, papers) {
     const container = document.getElementById('papers-container');
     const title = document.getElementById('main-title');
     const toolbar = document.getElementById('toolbar');
-    toolbar.style.display = 'flex';
+    toolbar.style.display = 'none';
 
     const domain = DataManager.getDomainById(domainId);
-    title.textContent = domain ? `${domain.icon} ${domain.name}` : '📄 全部论文';
+    title.textContent = domain ? domain.icon + ' ' + domain.name : '📄 全部论文';
 
     if (!papers || papers.length === 0) {
-      container.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">📭</div>
-          <div class="empty-text">该领域暂无论文</div>
-          <div class="empty-hint">点击上方「+ 添加论文」手动添加，或在「最新动态」中从 ArXiv 收录</div>
-        </div>
-      `;
+      container.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">该领域暂无论文</div><div class="empty-hint">点击上方「+ 添加论文」手动添加，或在「最新动态」中从 ArXiv 收录</div></div>';
       return;
     }
 
     const grid = document.createElement('div');
     grid.className = 'papers-grid';
-
     papers.forEach(paper => {
       grid.appendChild(this._createPaperCard(paper, domainId));
     });
-
     container.innerHTML = '';
     container.appendChild(grid);
-  },
-
-  /* ---------- Paper Card ---------- */
+  },/* ---------- Paper Card ---------- */
   _createPaperCard(paper, domainId) {
     const card = document.createElement('div');
-    card.className = 'paper-card';
+    card.className = 'paper-card paper-card-enhanced';
     card.dataset.paperId = paper.id;
 
-    const hasNotes = DataManager.getNotesForPaper(paper.title).length > 0;
-    const starsHtml = Array.from({ length: 5 }, (_, i) =>
-      `<span class="${i < (paper.importance || 0) ? 'star' : 'star-empty'}">★</span>`
-    ).join('');
+    const hasNotes = DataManager.getNotesForPaper(paper.title).length > 0;const tagsHtml = (paper.tags || []).map(function(t) {
+      var cls = 'tag';
+      if (t === 'foundational' || t === '代表作') cls += ' tag-primary';
+      return '<span class="' + cls + '">' + Renderer._escapeHtml(t) + '</span>';
+    }).join('');
 
-    const tagsHtml = (paper.tags || []).map(t =>
-      `<span class="tag ${t === 'foundational' || t === '代表作' ? 'tag-primary' : ''}">${t}</span>`
-    ).join('');
-
-    const metaParts = [];
-    if (paper.year) metaParts.push(paper.year);
-    if (paper.venue) metaParts.push(paper.venue);
+    // Authors
+    var authorsHtml = '';
     if (paper.authors) {
-      const shortAuthors = paper.authors.split(',')[0] + (paper.authors.includes(',') ? ' et al.' : '');
-      metaParts.unshift(shortAuthors);
+      var shortAuthors = paper.authors.split(',')[0];
+      if (paper.authors.indexOf(',') > 0) shortAuthors += ' et al.';
+      authorsHtml = '<div class="card-authors">' + Renderer._escapeHtml(shortAuthors) + '</div>';
     }
 
-    card.innerHTML = `
-      <div class="card-header">
-        <div class="card-title">${this._escapeHtml(paper.title)}</div>
-        ${hasNotes ? '<span class="note-badge" title="有阅读笔记">📝</span>' : ''}
-      </div>
-      <div class="card-meta">${this._escapeHtml(metaParts.join(' · '))}</div>
-      ${paper.venue && !metaParts.some(p => p.includes(paper.venue)) ? `<div class="card-meta">${this._escapeHtml(paper.venue)}</div>` : ''}
-      ${tagsHtml ? `<div class="card-tags">${tagsHtml}</div>` : ''}
-      <div class="card-actions">
-        <div class="card-stars">${starsHtml}</div>
-        <div class="card-links">
-          ${paper.link ? `<a href="${paper.link}" target="_blank" class="btn btn-sm" onclick="event.stopPropagation()">📄 论文</a>` : ''}
-          ${hasNotes ? `<span class="btn btn-sm" style="color:var(--color-primary)" onclick="event.stopPropagation(); App.showNoteForPaper('${paper.id}')">📝 笔记</span>` : ''}
-          <button class="btn-icon" onclick="event.stopPropagation(); App.deletePaper('${paper.id}')" title="删除">🗑️</button>
-        </div>
-      </div>
-    `;
+    // Venue/Year
+    var venueHtml = '';
+    if (paper.year || paper.venue) {
+      venueHtml = '<div class="card-venue">';
+      if (paper.year) venueHtml += paper.year;
+      if (paper.year && paper.venue) venueHtml += ' · ';
+      if (paper.venue) venueHtml += Renderer._escapeHtml(paper.venue);
+      venueHtml += '</div>';
+    }
 
-    card.addEventListener('click', () => App.showPaperDetail(paper.id));
+    // Abstract (first 150 chars)
+    var abstractHtml = '';
+    if (paper.abstract) {
+      var abs = paper.abstract.substring(0, 180);
+      if (paper.abstract.length > 180) abs += '...';
+      abstractHtml = '<div class="card-abstract">' + Renderer._escapeHtml(abs) + '</div>';
+    }
+
+    // Innovation preview (first 2)
+    var innovationHtml = '';
+    if (paper.innovation && paper.innovation.length > 0) {
+      var innoList = [];
+      for (var k = 0; k < Math.min(2, paper.innovation.length); k++) {
+        innoList.push('<span class="innovation-dot">✦ ' + Renderer._escapeHtml(paper.innovation[k].substring(0, 30)) + '</span>');
+      }
+      if (innoList.length > 0) innovationHtml = '<div class="card-innovation-preview">' + innoList.join('') + '</div>';
+    }
+
+    card.innerHTML = 
+      '<div class="card-header">' +
+        '<div class="card-title">' + Renderer._escapeHtml(paper.title) + '</div>' +
+        (hasNotes ? '<span class="note-badge" title="有阅读笔记">📝</span>' : '') +
+      '</div>' +
+      authorsHtml +
+      venueHtml +
+      (tagsHtml ? '<div class="card-tags">' + tagsHtml + '</div>' : '') +
+      abstractHtml +
+      innovationHtml +
+      '<div class="card-actions">' +
+        
+        '<div class="card-links">' +
+          (paper.link ? '<a href="' + paper.link + '" target="_blank" class="btn btn-sm" onclick="event.stopPropagation()">📄 论文</a>' : '') +
+          (hasNotes ? '<span class="btn btn-sm btn-note" onclick="event.stopPropagation(); App.showNoteForPaper(\'' + paper.id + '\')">📝 笔记</span>' : '') +
+          '' +
+        '</div>' +
+      '</div>';
+
+    card.addEventListener('click', function() { App.showPaperDetail(paper.id); });
     return card;
-  },
-
-  /* ---------- Paper Detail Modal ---------- */
+  },/* ---------- Paper Detail Modal ---------- */
   showPaperModal(paper) {
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
@@ -612,43 +677,62 @@ const Renderer = {
   },
 
   /* ---------- Simple Markdown Renderer for Notes ---------- */
+    /* ---------- Simple Markdown Renderer for Notes ---------- */
+    /* ---------- Simple Markdown Renderer for Notes ---------- */
   _renderMarkdown(text) {
     if (!text) return '';
-    let html = this._escapeHtml(text);
+    // Escape HTML first
+    let html = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Links: [text](url)  (must be before bold/italic to avoid conflicts)
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
 
     // Code blocks
     html = html.replace(/```(\w*)\n?([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
-
     // Inline code
     html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-
+    
     // Bold
-    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-
+    html = html.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
     // Italic
-    html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    html = html.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
 
-    // Lists
-    html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-    html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
-
-    // Blockquotes
+    // Blockquotes (> text)
     html = html.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+    
+    // Lists: - items
+    html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>.*?<\/li>\n?)+/g, '<ul>$&</ul>');
 
     // LaTeX inline: $...$
-    html = html.replace(/\$([^$]+)\$/g, '<span class="math">$$$1$$</span>');
-
+    html = html.replace(/\$([^$\n]+)\$/g, '<span class="math-inline">$1</span>');
     // LaTeX display: $$...$$
-    html = html.replace(/\$\$([\s\S]*?)\$\$/g, '<div class="math-block">$$$1$$</div>');
+    html = html.replace(/\$\$([\s\S]*?)\$\$/g, '<div class="math-block">$1</div>');
 
-    // Lines to paragraphs
-    html = html.replace(/\n\n/g, '</p><p>');
-    html = '<p>' + html + '</p>';
-
-    // Clean up nested paragraphs
+    // Paragraph breaks
+    html = html.replace(/\n{2,}/g, '</p><p>');
+    
+    // Wrap in paragraph if not already wrapped
+    if (!html.startsWith('<')) {
+      html = '<p>' + html + '</p>';
+    }
+    
+    // Clean up
     html = html.replace(/<p><\/p>/g, '');
     html = html.replace(/<li><\/li>/g, '');
+    html = html.replace(/<ul>\s*<\/ul>/g, '');
 
     return html;
-  }
+  },
+
 };
+
+
+
+
+
+
+
